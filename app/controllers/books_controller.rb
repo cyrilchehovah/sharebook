@@ -12,6 +12,11 @@ class BooksController < ApplicationController
 
   end
 
+  def show
+    @book = Book.find(params[:id])
+    @offer = @book.offers
+  end
+
   # si un book a au moins 1 offer, il s'affiche
   #sinon il ne s'affiche pas
 end

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 signup-box">
+      <h2> <%= @book.title %> </h2>
+      <h3> <%= @book.author %> </h3>
+      <p class="badge"> <%= @book.category %> </p>
+      <p> <%= @book.description %> </p>
+     </div>
+  </div>
+  <hr>
+  <div class="row">
+    <% raise %>
+    <% if @book.offers.count == 1 %>
+        <h3>Il y a actuellement un livre disponible, réservez le vite!</h3>
+    <% elsif @book.offers.count >= 1 %>
+        <h3>Il y a actuellement <%= @book.offers.count %> livres disponibles </h3>
+    <% end %>
+  </div>
+</div>

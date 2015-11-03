@@ -5,6 +5,7 @@
       <div class="col-sm-4">
         <h2><%= book.title%></h2>
         <p><%= book.description%></p>
+        <p><%= book.offers.count%></p>
         <p><span class="badge"><%= book.category%></span> - <%= book.author%></p>
       </div>
     <% end %>
