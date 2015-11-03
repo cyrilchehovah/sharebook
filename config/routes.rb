@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :offers, only: [:new, :create]
+  resources :offers, only: [:index, :new, :create]
 
   root to: "pages#home"
 

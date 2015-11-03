@@ -1,0 +1,13 @@
+<h1 class="text-center">Index d'offers</h1>
+<div class="container">
+  <div class="row">
+    <% @offers.each do |offer| %>
+    <div class="col-sm-4">
+        <h2><%= offer.book.title%></h2>
+        <p><%= offer.book.description%></p>
+        <p><span class="badge"><%= offer.book.category%></span> - <%= offer.book.author%></p>
+    </div>
+    <% end %>
+  </div>
+</div>
+

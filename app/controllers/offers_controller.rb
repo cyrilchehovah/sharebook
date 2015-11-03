@@ -2,18 +2,22 @@ class OffersController < ApplicationController
   before_action :set_book, only: [:create]
   before_action :set_user, only: [:create]
 
+  def index
+    @offers = Offer.all
+  end
+
   def new
     @offer = Offer.new
   end
 
   def create
-    @offer = Offer.new(params_offer)
+    @offer = @book.offers.new(params_offer)
     @offer.book = @book
     @offer.user = @user
 
       if @offer.valid?
         @offer.save
-        # redirect_to cocktail_path(@cocktail)
+        redirect_to offers_path()
       else
         render :new
       end
@@ -21,10 +25,10 @@ class OffersController < ApplicationController
 
   private
   def set_book
-    @book = Book.find(params[:book_id])
+    @book = Book.find(params[:offer][:book_id])
   end
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def params_offer
