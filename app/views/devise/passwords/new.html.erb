@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
      <div class="col-sm-6 col-sm-offset-3 signup-box">
-      <h2 class="text-center"> Mot de passe oublié?</h2>
+      <h2 class="text-center">Mot de passe oublié?</h2>
       <br>
 
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -17,7 +17,7 @@
       <% end %>
       <br>
       <div class="signup-or-separator">
-        <span class="signup-or-separator--text"> ou </span>
+        <span class="signup-or-separator--text">ou</span>
         <hr>
       </div>
       <%= render "devise/shared/links" %>
