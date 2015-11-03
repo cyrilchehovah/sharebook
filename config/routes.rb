@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :offers, only: [:index, :new, :create]
 
+  resources :books, only: [:index]
+
   root to: "pages#home"
 
   # The priority is based upon order of creation: first created -> highest priority.
