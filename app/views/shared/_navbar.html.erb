@@ -1,14 +1,14 @@
 <nav class="navbar-wagon">
   <div class="container navbar-wagon-container">
 
-    <a href="">
+    <%= link_to root_path do %>
       <%= image_tag "logo.png" %>
-    </a>
+    <% end %>
 
     <div class="navbar-wagon-pusher"></div>
 
     <form action="" class="navbar-wagon-search hidden-xs hidden-sm">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
+      <input type="text" class="navbar-wagon-search-input" placeholder="Chercher un livre, un auteur...">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
@@ -21,24 +21,44 @@
         </div>
       <% end %>
       <hr>
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag current_user.picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t ".profile", default: "Home" %>
-              <% end %>
-            </li>
-          </ul>
+      <% if current_user==nil %>
+        <div class="navbar-wagon-item">
+          <div class="dropdown">
+            <%= link_to "S'inscrire", new_user_registration_path  %>
+          </div>
         </div>
-      </div>
+        <hr>
+          <div class="navbar-wagon-item">
+            <div class="dropdown">
+              <%= link_to "Se connecter", new_user_session_path %>
+            </div>
+          </div>
+      <% else %>
+        <div class="navbar-wagon-item">
+          <div class="dropdown">
+            <%= image_tag current_user.picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <li>
+                <%= link_to edit_user_registration_path do %>
+                  <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path do %>
+                  <i class="fa fa-home"></i>  <%= t ".profile", default: "Home" %>
+              <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out"></i>  <%= t ".profile", default: "Se déconnecter" %>
+              <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
     <hr>
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <%= link_to t(".top_call_to_action", default: "Ajouter un livre"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 </nav>
