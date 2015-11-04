@@ -20,4 +20,7 @@ class User < ActiveRecord::Base
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
+
+  geocoded_by :address1
+  after_validation :geocode, if: :address1_changed?
 end
