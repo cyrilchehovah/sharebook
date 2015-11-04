@@ -68,17 +68,17 @@
   &-button {
     margin-left: 10px;
     padding: 0 20px;
-    border-radius: 20em;
+    /*border-radius: 20em;*/
     line-height: 40px;
-    background-color: #D23333;
+    background-color: $brand-primary;
     color: white;
     font-size: 14px;
-    border: 2px solid $brand-color;
+    border: 2px solid $brand-primary;
 
     &:hover {
       color: white;
-      background: $brand-color;
-      border-color: darken($brand-color, 10%);
+      background: black;
+      border-color: darken(black, 10%);
     }
   }
   &-dropdown-menu {
