@@ -15,6 +15,18 @@
   background-position: center center;
 }
 
+.card-testimonial{
+  background-color: white;
+  padding: 3em 2em 2em 2em;
+  margin: 2em;
+  position: relative;
+  img{
+    position: absolute;
+    top: -30px;
+    left: -20px;
+  }
+}
+
 .card-bloc{
   background-color: white;
   padding-left: 20px;
