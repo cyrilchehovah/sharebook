@@ -17,7 +17,7 @@ class OffersController < ApplicationController
 
       if @offer.valid?
         @offer.save
-        redirect_to offers_path()
+        redirect_to books_path()
       else
         render :new
       end
