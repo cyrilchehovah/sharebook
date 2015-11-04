@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_book, only: [:create]
-  before_action :set_user, only: [:create]
+  before_action :set_user, only: [:create, :new]
 
   def index
     @offers = Offer.all
@@ -8,6 +8,9 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
+    if @user.address1==nil
+      redirect_to edit_user_registration_path
+    end
   end
 
   def create
