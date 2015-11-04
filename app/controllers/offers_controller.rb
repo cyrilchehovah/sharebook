@@ -8,9 +8,6 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    if @user.address1==nil
-      redirect_to edit_user_registration_path
-    end
   end
 
   def create
