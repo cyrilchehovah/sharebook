@@ -1,7 +1,7 @@
 .card {
   position: relative;
-  height: 175px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  /*height: 300px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);*/
   color: white;
   margin: 20px auto;
 }
@@ -16,9 +16,11 @@
   background-color: white;
   padding-left: 20px;
   padding-right: 20px;
+  height: 450px;
   h2 {
     font-size: 24px;
     color: #4C356A;
+    margin-top: 0px;
   }
 }
 

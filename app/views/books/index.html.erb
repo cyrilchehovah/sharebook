@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1 class="text-center">Index books</h1>
+    <h1 class="text-center">Bibliothèque</h1>
     <div class="padded">
       <div class="container">
         <div class="row">
@@ -12,7 +12,7 @@
                   <div class="padded">
                     <h2><%= book.title %></h2>
                     <p><%= book.description %></p>
-                    <div class="user-badge user-badge-red"><%= book.offers.count%></div>
+                    <div class="user-badge user-badge-red user-badge-xl"><%= book.offers.count%></div>
                     <p><span class="badge"><%= book.category %></span> - <%= book.author %></p>
                   </div>
                  </div>
@@ -24,3 +24,4 @@
     </div>
   </div>
 </div>
+
