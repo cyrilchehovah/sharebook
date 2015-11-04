@@ -22,10 +22,10 @@
         <h3>Il y a actuellement <%= @book.offers.count %> livres disponibles </h3>
     <% end %>
     <div class="">
-      <h4><%= image_tag @user.picture, class: "img-circle" %></h4>
-      <p><%= @user.first_name %> <%= @user.last_name %></p>
-<!--       <p><%= @user.address1 %></p>
-      <p><%= @user.address2 %></p> -->
+      <% @users.each do |user|%>
+        <p><%= user.email %></p>
+      <% end %>
+
     </div>
   </div>
 </div>

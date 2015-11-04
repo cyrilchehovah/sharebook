@@ -15,13 +15,15 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @offer = @book.offers
-    @user = User.find(params[:id])
+    @offers = @book.offers
+    @users = []
+
+    @offers.each do |offer|
+      id = offer[:user_id]
+      user = User.find(id)
+      @users << user
+    end
   end
-
-  # si un book a au moins 1 offer, il s'affiche
-  #sinon il ne s'affiche pas
-
 end
 
 
