@@ -12,14 +12,11 @@
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
 
-          <%= f.input :password, autocomplete: "off", hint: "Ne pas remplir si vous ne voulez pas changer ce champs", required: false %>
-          <%= f.input :password_confirmation, required: false %>
-          <%= f.input :current_password, hint: "Renseignez votre mot de passe pour confirmer le changement", required: true %>
         </div>
         <hr>
         <h4>Où souhaitez vous échanger vos livres?</h4>
          <div class="form-inputs">
-          <%= f.input :address1, :label => "Adresse 1", autofocus: true %>
+          <%= f.input :address1, :label => "Adresse 1", autofocus: true, id: "user_input_autocomplete_address" %>
           <%= f.input :address2, :label => "Adresse 2", autofocus: true %>
         </div>
 
@@ -38,3 +35,13 @@
      </div>
   </div>
 </div>
+
+<!-- Include Google Maps JS API -->
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?libraries=places">
+</script>
+
+<!-- Custom JS code to bind to Autocomplete API -->
+<!-- find it here: https://github.com/lewagon/google-place-autocomplete/blob/gh-pages/autocomplete.js -->
+<!-- We'll detail this file in the article -->
+<script type="text/javascript" src="autocomplete.js"></script>
