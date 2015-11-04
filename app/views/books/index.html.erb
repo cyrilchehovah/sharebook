@@ -6,8 +6,9 @@
         <div class="row">
           <% @array.each do |book| %>
              <div class="col-xs-12 col-sm-4">
-              <div class="card">
+                <%= link_to book_path(book), :class => "card" do %>
                  <div class="img-medium" style="background-image:url('<%= image_url book.image %>')"></div>
+
                  <div class="card-bloc">
                   <div class="padded">
                     <h2><%= book.title %></h2>
@@ -16,7 +17,7 @@
                     <p><span class="badge"><%= book.category %></span> - <%= book.author %></p>
                   </div>
                  </div>
-              </div>
+                <% end %>
              </div>
           <% end %>
         </div>

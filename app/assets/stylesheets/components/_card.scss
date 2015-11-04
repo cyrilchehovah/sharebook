@@ -4,7 +4,10 @@
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);*/
   color: white;
   margin: 20px auto;
-}
+  }
+  a:hover{
+      text-decoration: none;
+  }
 
 .img-medium {
   height: 300px;
@@ -17,6 +20,7 @@
   padding-left: 20px;
   padding-right: 20px;
   height: 450px;
+  margin-bottom: 40px;
   h2 {
     font-size: 24px;
     color: #4C356A;
