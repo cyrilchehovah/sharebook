@@ -3,9 +3,10 @@
   <div class="row">
     <% @array.each do |book| %>
       <div class="col-sm-4">
-        <h2><%= book.title%></h2>
-        <p><%= book.description%></p>
-        <p><span class="badge"><%= book.category%></span> - <%= book.author%></p>
+        <h2><%= book.title %></h2>
+        <p><%= book.description %></p>
+        <p><%= book.image %></p>
+        <p><span class="badge"><%= book.category %></span> - <%= book.author %></p>
       </div>
     <% end %>
   </div>
