@@ -7,22 +7,10 @@
 
     <div class="navbar-wagon-pusher"></div>
 
-    <%= link_to "La bibliothèque", books_path %>
-
-    <form action="" class="navbar-wagon-search hidden-xs hidden-sm">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Chercher un livre, un auteur...">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-    <hr class="hidden-xs hidden-sm">
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link hidden-xs" do %>
-        <div class="icon-badge-container">
-          <i class="fa fa-envelope-o"></i>
-          <div class="icon-badge icon-badge-blue">3</div>
-        </div>
-      <% end %>
-      <hr>
+    <%= link_to books_path do %>
+    <i class="fa fa-book fa-2x"></i>
+    <% end %>
+    <hr>
       <% if current_user==nil %>
         <div class="navbar-wagon-item">
           <div class="dropdown">
@@ -41,7 +29,7 @@
             <%= image_tag current_user.picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <li>
-                <%= link_to edit_user_registration_path do %>
+                <%= link_to user_path(current_user) do %>
                   <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
                 <% end %>
               </li>
