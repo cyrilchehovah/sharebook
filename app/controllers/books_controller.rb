@@ -17,9 +17,12 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @booking = Booking.new
     @offers = @book.offers
-    @markers = Gmaps4rails.build_markers(@users) do |user, marker|
-      marker.lat user.latitude
-      marker.lng user.longitude
+
+    @markers = Gmaps4rails.build_markers(@offers) do |offer, marker|
+      marker.lat offer.user.latitude
+      marker.lng offer.user.longitude
+      marker.infowindow "<strong>#{offer.user.first_name} #{offer.user.last_name}</strong>
+      <br>"
     end
   end
 end
