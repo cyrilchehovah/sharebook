@@ -14,13 +14,9 @@ class BooksController < ApplicationController
   end
 
   def show
-
     @book = Book.find(params[:id])
+    @booking = Booking.new
     @offers = @book.offers
-    @users = []
-    @offers.each do |offer|
-      @users << offer.user
-    endshow
     @markers = Gmaps4rails.build_markers(@users) do |user, marker|
       marker.lat user.latitude
       marker.lng user.longitude

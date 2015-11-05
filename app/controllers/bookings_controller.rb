@@ -1,16 +1,13 @@
 class BookingsController < ApplicationController
-
-
   def create
-
-    @booking = current_user.bookings.build(booking_params)
-    @booking = offer.booking
+    @offer = Offer.find(params[:offer_id])
+    @offer.bookings.create(user_id: current_user.id)
+    redirect_to user_path(current_user)
   end
 
-  private
-
-  def booking_params
-   params.require(:booking).permit(:user_id, :offer_id, :accepted, :starts_on, :ends_on)
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to bookings_path
   end
-
 end
