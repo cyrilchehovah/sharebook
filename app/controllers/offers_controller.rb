@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_book, only: [:create]
+  before_action :set_book, only: [:create, :show]
   before_action :set_user, only: [:create, :new]
 
   def index
@@ -9,6 +9,7 @@ class OffersController < ApplicationController
   def new
     @offer = Offer.new
   end
+
 
   def create
     @offer = @book.offers.new(params_offer)
