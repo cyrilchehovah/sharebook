@@ -25,6 +25,7 @@
           <div class="col-sm-2">
             <div class="text-center">
               <%= image_tag offer.user.picture, class:'avatar avatar-large' %>
+
               <p><%= offer.user.first_name%> <%= offer.user.last_name%></p>
               <%= link_to 'voir son profil', user_path(offer.user), class:'btn btn-primary'%>
 
@@ -47,13 +48,12 @@
               markers = handler.addMarkers(<%= raw @markers.to_json %>);
               handler.bounds.extendWith(markers);
               handler.fitMapToBounds();
-            });
-          })
+                });
+              })
         <% end %>
       <% end %>
+
     </div>
-
-
     </div>
   </div>
 </div>
