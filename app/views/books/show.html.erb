@@ -1,44 +1,52 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <%= image_tag("https://unsplash.it/260/324", class: "img-responsive") %>
+<div class="padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= image_tag @book.image, class:'img-responsive' %>
+      </div>
+      <div class="col-sm-8">
+
+        <h2> <%= @book.title %> </h2>
+        <h3> <%= @book.author %> </h3>
+        <p class="badge"> <%= @book.category %> </p>
+        <p> <%= @book.description %> </p>
+      </div>
     </div>
-    <div class="col-sm-8">
-      <h2> <%= @book.title %> </h2> <br>
-      <h3> <%= @book.author %> </h3> <br>
-      <p class="badge"> <%= @book.category %> </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <p> <%= @book.description %> </p>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <% if @book.offers.count == 1 %>
-        <h3>Il y a actuellement un livre disponible, réservez le vite!</h3>
-    <% elsif @book.offers.count >= 1 %>
-        <h3>Il y a actuellement <%= @book.offers.count %> livres disponibles </h3>
-    <% end %>
-    <div class="">
-      <% @users.each do |user|%>
-        <p><%= user.email %></p>
+
+    <div class="row">
+      <% if @book.offers.count == 1 %>
+          <h3>Il y a actuellement un livre disponible, réservez le vite!</h3>
+      <% elsif @book.offers.count >= 1 %>
+          <h3>Il y a actuellement <%= @book.offers.count %> livres disponibles </h3>
+      <% end %>
+        <% @users.each do |user|%>
+          <div class="col-sm-2">
+            <div class="text-center">
+              <%= image_tag user.picture, class:'avatar avatar-large' %>
+              <p><%= user.first_name%> <%= user.last_name%></p>
+              <%= link_to 'voir son profil', user_path(user), class:'btn btn-primary'%>
+            </div>
+          </div>
       <% end %>
     </div>
 
-    <div id="map" style="width: 100%; height: 600px;"></div>
-    <% content_for(:after_js) do %>
-      <%= javascript_tag do %>
-        $(document).on('ready', function() {
-          handler = Gmaps.build('Google');
-          handler.buildMap({ internal: { id: 'map' } }, function(){
-            markers = handler.addMarkers(<%= raw @markers.to_json %>);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-          });
-        })
+    <div class="padded">
+      <div id="map" style="width: 100%; height: 600px;"></div>
+      <% content_for(:after_js) do %>
+        <%= javascript_tag do %>
+          $(document).on('ready', function() {
+            handler = Gmaps.build('Google');
+            handler.buildMap({ internal: { id: 'map' } }, function(){
+              markers = handler.addMarkers(<%= raw @markers.to_json %>);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+            });
+          })
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+
+
+    </div>
   </div>
 </div>
