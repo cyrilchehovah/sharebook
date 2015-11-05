@@ -1,107 +1,125 @@
 <!-- Banner -->
-  <div class="banner-top text-center" style='background-image: url("<%= image_url("webibli-bg.jpg") %>")'>
-
+  <div class="banner-top" style='background-image: url("<%= image_url("banner-home.jpg") %>")'>
     <div class="bg-filter bg-gradient"></div>
-    <div class="banner-content">
-      <div class="text-shadow">
-        <h1>Passionnés du web, partagez vos livres !</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <h1>Envie d’emprunter ce livre ?</h1>
+          <%= image_tag("fleche-short.png" , class: "fleche") %>
+        </div>
       </div>
-      <%= link_to "Découvrez la bibliothèque", books_path, class: "btn btn-primary btn-lg"%>
     </div>
+
   </div>
-
-<!-- Features -->
-
-<div class="padded">
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4">
-        <div class="feature">
-          <h2><i class="fa fa-share-alt fa-2x"></i></h2>
-          <h4>Partagez vos livres</h4>
-          <p>
-            Prêtez vos livres et empruntez-en sur Webibli. C’est simple et c’est gratuit !</p>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-4">
-        <div class="feature">
-          <h2><i class="fa fa-book fa-2x"></i></h2>
-          <h4>Lisez et progressez</h4>
-          <p>Vous avez maintenant accès à un grand nombre de livres, profitez-en !</p>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-4">
-        <div class="feature">
-          <h2><i class="fa fa-comments fa-2x"></i></h2>
-          <h4>Rencontrez des passionnés</h4>
-          <p>Les prêts se font en mains propres. C’est le moment d’élargir votre réseau !</p>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-</div>
-
 
 <div class="container padded">
-  <h2 class="text-center">Ce qu'ils en disent</h2>
-  <div class="row padded">
-    <div class="col-xs-12 col-sm-6">
-      <div class="card-testimonial">
-        <p>Sharebook m'a permis de lire pleins de bouquins sur l'ergonomie, je suis trop content !</p>
-        <%= image_tag("testimonial-1.jpg", class: 'avatar avatar-xlarge')  %>
-        <h6>Christophe - Webdesigner</h6>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <h2 class="text-center purple">Retrouvez des livres spécialisés dans le web en fouillant la bibliothèque de vos voisins</h2>
+        </div>
       </div>
-    </div>
 
-    <div class="col-xs-12 col-sm-6">
-      <div class="card-testimonial">
-        <p>Lire pleins de livres, progresser et rencontrer des gens sympas, que demandez de plus ?</p>
-        <%= image_tag("testimonial-2.jpg", class: 'avatar avatar-xlarge')  %>
-        <h6>Anouck - Webmarketing</h6>
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-6">
-      <div class="card-testimonial">
-        <p>J'ai enfin lu un livre sur le webmarketing ! </p>
-        <%= image_tag("testimonial-3.jpg", class: 'avatar avatar-xlarge')  %>
-        <h6>Mélanie - Développeuse</h6>
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-6">
-      <div class="card-testimonial">
-        <p>Lire pleins de livres, progresser et rencontrer des gens sympas, que demandez de plus ?</p>
-        <%= image_tag("testimonial-4.jpg", class: 'avatar avatar-xlarge')  %>
-        <h6>Thibaut - Staruper</h6>
-      </div>
+      <form>
+        <div class="form-group">
+          <input class="form-control input-lg" type="text" placeholder="HTML5 pour les web designers">
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
 
 <!-- Categories -->
 
-<div class="banner text-center" style='background-image: url("<%= image_url("webibli-bg.jpg") %>")'>
-  <div class="bg-filter bg-black-70"></div>
-  <div class="banner-content">
-    <h2>Les catégories</h2>
-    <ul class="list-unstyled list-inline keywords">
-      <li class="btn-white-border">Webdesign</li>
-      <li class="btn-white-border">Developpement</li>
-      <li class="btn-white-border">Typographie</li>
-      <li class="btn-white-border">Graphisme</li>
-      <li class="btn-white-border">UX</li>
-      <li class="btn-white-border">Webmarketing</li>
-      <li class="btn-white-border">Ergonomie</li>
-      <li class="btn-white-border">Front-end</li>
-      <li class="btn-white-border">Datavision</li>
-      <li class="btn-white-border">Ruby</li>
-    </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="banner-top" style='background-image: url("<%= image_url("category-ux.jpg") %>")'>
+        <div class="card-category">
+          <div class="bg-filter bg-gradient"></div>
+          <h2>UX</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="banner-top" style='background-image: url("<%= image_url("category-graphisme.jpg") %>")'>
+        <div class="card-category">
+          <div class="bg-filter bg-gradient"></div>
+          <h2>Graphisme</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="banner-top" style='background-image: url("<%= image_url("category-developement.jpg") %>")'>
+        <div class="card-category">
+          <div class="bg-filter bg-gradient"></div>
+          <h2>Développement</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="banner-top" style='background-image: url("<%= image_url("category-webdesign.jpg") %>")'>
+        <div class="card-category">
+          <div class="bg-filter bg-gradient"></div>
+          <h2>Webdesign</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="banner-top" style='background-image: url("<%= image_url("category-webmarketing.jpg") %>")'>
+        <div class="card-category">
+          <div class="bg-filter bg-gradient"></div>
+          <h2>Webmarketing</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Temoignages -->
+
+<div class="container padded">
+  <h2 class="text-center purple">Les weblinautes</h2>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div class="card-testimonial top text-center">
+        <div class="arrow"></div>
+        <p>Sharebook m'a permis de lire pleins de bouquins sur l'ergonomie, je suis trop content !</p>
+        <h4 class="purple">Christophe - Webdesigner</h4>
+      </div>
+      <div class="text-center">
+        <%= image_tag("testimonial-1.jpg", class: 'avatar avatar-xlarge')  %>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <div class="card-testimonial top text-center">
+        <div class="arrow"></div>
+        <p>Lire pleins de livres, progresser et rencontrer des gens sympas, que demandez de plus ?</p>
+
+        <h4 class="purple">Anouck - Webmarketing</h4>
+      </div>
+      <div class="text-center">
+        <%= image_tag("testimonial-2.jpg", class: 'avatar avatar-xlarge')  %>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <div class="card-testimonial top text-center">
+        <div class="arrow"></div>
+        <p>J'en connais enfin un peu plus sur la typo, de quoi avoir l'air plus avisé quand je choisis mes googles font :D</p>
+        <h4 class="purple">Mélanie - Développeuse</h4>
+      </div>
+      <div class="text-center">
+        <%= image_tag("testimonial-3.jpg", class: 'avatar avatar-xlarge')  %>
+      </div>
     </div>
   </div>
 </div>

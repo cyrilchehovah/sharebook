@@ -8,21 +8,22 @@
     <div class="navbar-wagon-pusher"></div>
 
     <%= link_to books_path do %>
-    <i class="fa fa-book fa-2x"></i>
+    La bibliothèque
     <% end %>
     <hr>
       <% if current_user==nil %>
-        <div class="navbar-wagon-item">
-          <div class="dropdown">
-            <%= link_to "S'inscrire", new_user_registration_path  %>
-          </div>
-        </div>
-        <hr>
+
           <div class="navbar-wagon-item">
             <div class="dropdown">
               <%= link_to "Se connecter", new_user_session_path %>
             </div>
           </div>
+          <div class="navbar-wagon-item">
+            <div class="dropdown">
+              <%= link_to "S'inscrire", new_user_registration_path, class: "navbar-wagon-item navbar-wagon-button btn"  %>
+            </div>
+          </div>
+
       <% else %>
         <div class="navbar-wagon-item">
           <div class="dropdown">
@@ -46,9 +47,7 @@
             </ul>
           </div>
         </div>
+        <%= link_to t(".top_call_to_action", default: "Ajouter un livre"), new_offer_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
       <% end %>
-
-    <hr>
-    <%= link_to t(".top_call_to_action", default: "Ajouter un livre"), new_offer_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 </nav>
