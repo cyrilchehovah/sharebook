@@ -10,6 +10,8 @@
         <h3> <%= @book.author %> </h3>
         <p class="badge"> <%= @book.category %> </p>
         <p> <%= @book.description %> </p>
+
+
       </div>
     </div>
 
@@ -25,6 +27,12 @@
               <%= image_tag user.picture, class:'avatar avatar-large' %>
               <p><%= user.first_name%> <%= user.last_name%></p>
               <%= link_to 'voir son profil', user_path(user), class:'btn btn-primary'%>
+
+              <%= simple_form_for [@book, @booking] do |f| %>
+
+                <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
+              <% end %>
+
             </div>
           </div>
       <% end %>
