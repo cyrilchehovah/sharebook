@@ -10,6 +10,8 @@
         <h3> <%= @book.author %> </h3>
         <p class="badge"> <%= @book.category %> </p>
         <p> <%= @book.description %> </p>
+
+
       </div>
     </div>
 
@@ -19,12 +21,17 @@
       <% elsif @book.offers.count >= 1 %>
           <h3>Il y a actuellement <%= @book.offers.count %> livres disponibles </h3>
       <% end %>
-        <% @users.each do |user|%>
+        <% @offers.each do |offer|%>
           <div class="col-sm-2">
             <div class="text-center">
-              <%= image_tag user.picture, class:'avatar avatar-large' %>
-              <p><%= user.first_name%> <%= user.last_name%></p>
-              <%= link_to 'voir son profil', user_path(user), class:'btn btn-primary'%>
+              <%= image_tag offer.user.picture, class:'avatar avatar-large' %>
+              <p><%= offer.user.first_name%> <%= offer.user.last_name%></p>
+              <%= link_to 'voir son profil', user_path(offer.user), class:'btn btn-primary'%>
+
+              <%= simple_form_for [offer, @booking] do |f| %>
+                <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
+              <% end %>
+
             </div>
           </div>
       <% end %>

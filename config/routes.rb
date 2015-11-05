@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :offers, only: [:index, :new, :create]
+  resources :offers, only: [:index, :new, :create]do
+     resources :bookings, only: [:create, :show]
+   end
 
   resources :books, only: [:index, :show]
 
