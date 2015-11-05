@@ -19,10 +19,13 @@ class BooksController < ApplicationController
     @users = []
     @offers.each do |offer|
       @users << offer.user
-    end
+      end
+
     @markers = Gmaps4rails.build_markers(@users) do |user, marker|
-      marker.lat user.latitude
-      marker.lng user.longitude
+    marker.lat user.latitude
+    marker.lng user.longitude
+
+
     end
   end
 end

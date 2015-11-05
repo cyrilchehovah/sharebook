@@ -22,5 +22,18 @@ class User < ActiveRecord::Base
   end
 
   geocoded_by :address1
-  after_validation :geocode, if: :address1_changed?
+  before_validation :geocode, if: :address1_changed?
+
+  # after_validation :geocode_or_reset_coordinates, if: :address1_changed?
+
+
+  # private
+
+  #   def geocode_or_reset_coordinates
+  #     if geocode.nil?
+  #       self.latitude = nil
+  #       self.longitude = nil
+  #     end
+  #   end
+
 end

@@ -3,11 +3,14 @@
     <div class="padded">
       <div class="col-sm-2">
         <%=image_tag @user.picture, class: "img-responsive" %>
-        <h4><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-<i class="fa fa-star"></i> <i class="fa fa-star-o"></i></h4>
+        <% if @user.id== current_user.id %>
+          <%= link_to edit_user_registration_path do %>
+          <i class="fa fa-pencil"></i>
+          <% end %>
+        <% end %>
+        <h4><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i></h4>
         <h4>2 commentaires</h4>
-        <h4 class="badge"><i class="fa fa-map-marker"></i> Paris, 75002</h4>
-        <h4 class="badge"><i class="fa fa-map-marker"></i> Montreuil</h4>
+        <h4 class="badge"><i class="fa fa-map-marker"></i> <%= @user.address1 %> </h4>
       </div>
 
       <div class="col-sm-10">
@@ -31,3 +34,4 @@
     </div>
   </div>
 </div>
+
