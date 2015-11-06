@@ -21,8 +21,11 @@ class BooksController < ApplicationController
     @markers = Gmaps4rails.build_markers(@offers) do |offer, marker|
       marker.lat offer.user.latitude
       marker.lng offer.user.longitude
-      marker.infowindow "<strong>#{offer.user.first_name} #{offer.user.last_name}</strong>
-      <br>"
+      marker.json({:id => offer.id })
+      marker.infowindow render_to_string(:partial => "/books/infowindowcontent", :locals => { :object => offer})
+
+      # "<strong>#{offer.user.first_name} #{offer.user.last_name}</strong>
+      # <br>"
     end
   end
 end
