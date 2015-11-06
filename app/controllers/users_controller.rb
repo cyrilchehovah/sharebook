@@ -4,7 +4,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @offers = @user.offers
     @bookings = @user.bookings
+    # @bookings = @accepted.bookings
 
+    @bookings = params[:accepted_bookings] == "1"
 
     @books = []
 
