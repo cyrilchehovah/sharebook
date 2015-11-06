@@ -1,59 +1,71 @@
 <div class="padded">
   <div class="container">
     <div class="row">
-      <div class="col-sm-4">
+
+      <div class="col-md-4">
         <%= image_tag @book.image, class:'img-responsive' %>
       </div>
-      <div class="col-sm-8">
 
-        <h2> <%= @book.title %> </h2>
-        <h3> <%= @book.author %> </h3>
-        <p class="badge"> <%= @book.category %> </p>
-        <p> <%= @book.description %> </p>
-
-
+      <div class="col-md-8">
+        <h1 class="mt0"><%= @book.title %></h1>
+        <h2><%= @book.category %> - <%= @book.author %></h2>
+        <p><%= @book.description %></p>
       </div>
     </div>
 
+    <hr>
+
     <div class="row">
+
       <% if @book.offers.count == 1 %>
-          <h3>Il y a actuellement un livre disponible, réservez le vite!</h3>
+          <h2>Il y a un prêteur pour ce livre</h2>
       <% elsif @book.offers.count >= 1 %>
-          <h3>Il y a actuellement <%= @book.offers.count %> livres disponibles </h3>
+          <h2>Il y a <%= @book.offers.count %> prêteurs pour ce livre</h2>
       <% end %>
-        <% @offers.each do |offer|%>
-          <div class="col-sm-2">
-            <div class="text-center">
-              <%= image_tag offer.user.picture, class:'avatar avatar-large' %>
 
-              <p><%= offer.user.first_name%> <%= offer.user.last_name%></p>
-              <%= link_to 'voir son profil', user_path(offer.user), class:'btn btn-primary'%>
+      <div class="col-md-4">
 
-              <%= simple_form_for [offer, @booking] do |f| %>
-                <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
-              <% end %>
 
+          <!-- OFFERS -->
+          <% @offers.each do |offer|%>
+            <div class="row">
+              <div class="col-md-2">
+                <%= image_tag offer.user.picture, class:'avatar avatar-large' %>
+              </div>
+              <div class="col-md-10">
+                <h2 class="mb10 mt0"><%= offer.user.first_name%> <%= offer.user.last_name%></h2>
+                <h4><%= link_to 'voir son profil', user_path(offer.user)%></h4>
+                <%= simple_form_for [offer, @booking] do |f| %>
+                  <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
+                <% end %>
+              </div>
             </div>
-          </div>
-      <% end %>
-    </div>
+            <hr>
+          <% end %>
 
-    <div class="padded">
-      <div id="map" style="width: 100%; height: 600px;"></div>
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-          $(document).on('ready', function() {
-            handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function(){
-              markers = handler.addMarkers(<%= raw @markers.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-                });
-              })
+        </div>
+      <div class="col-md-8">
+        <!-- MAP -->
+        <div id="map" style="width: 100%; height: 400px;"></div>
+        <% content_for(:after_js) do %>
+          <%= javascript_tag do %>
+            $(document).on('ready', function() {
+              handler = Gmaps.build('Google');
+              handler.buildMap({ internal: { id: 'map' } }, function(){
+                markers = handler.addMarkers(<%= raw @markers.to_json %>);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                  });
+                })
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+    </div>
 
-    </div>
-    </div>
+
   </div>
 </div>
+
+
+
+
