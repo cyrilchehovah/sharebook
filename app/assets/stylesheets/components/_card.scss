@@ -12,13 +12,10 @@
     bottom: 5px;
   }
 }
-
 .card-testimonial{
   margin: 0.7em 0.7em 1.5em 0.7em;
   border-top: 3px solid $green;
 }
-
-
 .card-image {
   display:flex;
   align-items: center;
@@ -35,7 +32,6 @@
     flex: 0 0 auto;
   }
 }
-
 .card-book {
   .card {
     margin-top: -60px;
@@ -43,7 +39,6 @@
     min-height:280px;
   }
 }
-
 /*Fleche !! */
 .card-testimonial.top > .arrow::after {
     border-bottom-width: 0;
@@ -52,13 +47,10 @@
     content: " ";
     margin-left: -10px;
 }
-
 .card-testimonial > .arrow::after {
     border-width: 10px;
     content: "";
 }
-
-
 .card-testimonial.top > .arrow {
     border-bottom-width: 0;
     border-top-color: rgba(0, 0, 0, 0.10);
@@ -66,7 +58,6 @@
     left: 50%;
     margin-left: -11px;
 }
-
 .card-testimonial > .arrow {
     border-width: 11px;
 }
@@ -78,4 +69,3 @@
     position: absolute;
     width: 10px;
 }
-

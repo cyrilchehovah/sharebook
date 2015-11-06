@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @offers = @user.offers
     @bookings = @user.bookings
-
+    @lendings = @user.offers_bookings
 
     @books = []
 
