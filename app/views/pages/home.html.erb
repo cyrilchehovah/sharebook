@@ -1,16 +1,15 @@
 <!-- Banner -->
-  <div class="banner-top" style='background-image: url("<%= image_url("banner-home.jpg") %>")'>
-    <div class="bg-filter bg-gradient"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6">
-          <h1>Envie d’emprunter ce livre ?</h1>
-          <%= image_tag("fleche-short.png" , class: "fleche") %>
-        </div>
+<div class="banner-top banner-home" style='background-image: url("<%= image_url("banner-home.jpg") %>")'>
+  <div class="bg-filter bg-gradient"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <h1>Envie d’emprunter ce livre ?</h1>
+        <%= image_tag("fleche-short.png" , class: "fleche") %>
       </div>
     </div>
-
   </div>
+</div>
 
 <div class="container padded">
   <div class="row">
@@ -22,9 +21,12 @@
       </div>
 
       <form>
-        <div class="form-group">
-          <input class="form-control input-lg" type="text" placeholder="HTML5 pour les web designers">
-        </div>
+        <div class="input-group">
+          <input type="text" class="form-control input-lg" placeholder="HTML5 pour les web designers">
+          <span class="input-group-btn">
+            <button class="btn btn-primary btn-lg" type="button"><i class="fa fa-search"></i></button>
+          </span>
+        </div><!-- /input-group -->
       </form>
     </div>
   </div>
@@ -36,7 +38,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="banner-top" style='background-image: url("<%= image_url("category-ux.jpg") %>")'>
-        <div class="card-category">
+        <div class="card-image">
           <div class="bg-filter bg-gradient"></div>
           <h2>UX</h2>
         </div>
@@ -45,7 +47,7 @@
 
     <div class="col-sm-4">
       <div class="banner-top" style='background-image: url("<%= image_url("category-graphisme.jpg") %>")'>
-        <div class="card-category">
+        <div class="card-image">
           <div class="bg-filter bg-gradient"></div>
           <h2>Graphisme</h2>
         </div>
@@ -54,7 +56,7 @@
 
     <div class="col-sm-4">
       <div class="banner-top" style='background-image: url("<%= image_url("category-developement.jpg") %>")'>
-        <div class="card-category">
+        <div class="card-image">
           <div class="bg-filter bg-gradient"></div>
           <h2>Développement</h2>
         </div>
@@ -65,7 +67,7 @@
   <div class="row">
     <div class="col-sm-8">
       <div class="banner-top" style='background-image: url("<%= image_url("category-webdesign.jpg") %>")'>
-        <div class="card-category">
+        <div class="card-image">
           <div class="bg-filter bg-gradient"></div>
           <h2>Webdesign</h2>
         </div>
@@ -74,7 +76,7 @@
 
     <div class="col-sm-4">
       <div class="banner-top" style='background-image: url("<%= image_url("category-webmarketing.jpg") %>")'>
-        <div class="card-category">
+        <div class="card-image">
           <div class="bg-filter bg-gradient"></div>
           <h2>Webmarketing</h2>
         </div>
@@ -89,7 +91,7 @@
   <h2 class="text-center">Les weblinautes</h2>
   <div class="row">
     <div class="col-xs-12 col-sm-4">
-      <div class="card-testimonial top text-center">
+      <div class="card card-testimonial top text-center">
         <div class="arrow"></div>
         <p>Sharebook m'a permis de lire pleins de bouquins sur l'ergonomie, je suis trop content !</p>
         <h4>Christophe - Webdesigner</h4>
@@ -100,7 +102,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-4">
-      <div class="card-testimonial top text-center">
+      <div class="card card-testimonial top text-center">
         <div class="arrow"></div>
         <p>Lire pleins de livres, progresser et rencontrer des gens sympas, que demandez de plus ?</p>
 
@@ -112,7 +114,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-4">
-      <div class="card-testimonial top text-center">
+      <div class="card card-testimonial top text-center">
         <div class="arrow"></div>
         <p>J'en connais enfin un peu plus sur la typo, de quoi avoir l'air plus avisé quand je choisis mes googles font :D</p>
         <h4>Mélanie - Développeuse</h4>
