@@ -66,14 +66,14 @@
     <div class="padded">
       <div class="col-sm-12">
         <h2 class="text-center">Ses demandes</h2>
-        <% @lendings.each do |lending| %>
+        <% @bookings.each do |booking| %>
          <div class="card-book">
             <div class="col-xs-12 col-sm-4">
-               <div class="card-image" style="background-image:url('<%= image_url lending.offer.book.image %>')"></div>
+               <div class="card-image" style="background-image:url('<%= image_url booking.offer.book.image %>')"></div>
                <div class="card">
-                 <h2><%= lending.offer.book.title %></h2>
-                 <p><%= lending.offer.book.category %></p>
-                 <h4><%= lending.offer.book.author %></h4>
+                 <h2><%= booking.offer.book.title %></h2>
+                 <p><%= booking.offer.book.category %></p>
+                 <h4><%= booking.offer.book.author %></h4>
                  <button class="btn btn-success" type="submit">Accepter</button>
                </div>
              </div>
