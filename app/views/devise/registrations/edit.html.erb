@@ -16,11 +16,11 @@
         <hr>
           <h4>Où souhaitez vous échanger vos livres?</h4>
           <div class="form-inputs">
-            <%= f.input :address1, :label => "Adresse", autofocus: true, input_html: { class: "popover-if-empty address1", id: "user_input_autocomplete_address", "data-toggle" => "popover",  "title" => "Attention", "data-content" => "Pour ajouter un livre, il vous faut renseigner auparavant votre adresse!" }, placeholder: "Votre adresse..." %>
+            <%= f.input :address1, :label => "Adresse", autofocus: true, input_html: { class: "popover-if-empty address", id: "user_input_autocomplete_address", "data-toggle" => "popover",  "title" => "Attention", "data-content" => "Pour ajouter un livre, il vous faut renseigner auparavant votre adresse!" }, placeholder: "Votre adresse..." %>
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Mettre à jour", class: "btn btn-primary" %> <%= link_to "Annuler", :back, class: "btn btn-primary" %>
+              <%= f.button :submit, "Mettre à jour", class: "btn btn-primary sendButton" %> <%= link_to "Annuler", :back, class: "btn btn-primary" %>
           </div>
       <% end %>
 
