@@ -1,66 +1,85 @@
 <div class="container">
   <div class="row">
-    <div class="padded">
-      <div class="col-sm-2">
-        <%=image_tag @user.picture, class: "img-responsive" %>
-        <% if @user.id== current_user.id %>
-          <%= link_to edit_user_registration_path do %>
-          <i class="fa fa-pencil"></i>
-          <% end %>
-        <% end %>
-        <h4><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i></h4>
-        <h4>2 commentaires</h4>
-        <h4 class="badge"><i class="fa fa-map-marker"></i> <%= @user.address1 %> </h4>
-      </div>
-
-      <div class="col-sm-10">
-        <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ratione praesentium, reprehenderit maiores similique eveniet sed facilis fuga itaque autem amet officiis aut saepe iure libero nam accusantium sunt provident!</p>
-      </div>
-
-      <div class="col-sm-10">
-        <h3>Ses livres</h3>
-        <% @books.each do |book| %>
-         <div class="col-xs-6 col-sm-2">
-            <%= link_to book_path(book), :class => "card" do %>
-             <div class="small" style="background-image:url('<%= image_url book.image %>')"></div>
+    <div class="card">
+      <div class="row">
+        <div class="col-sm-4">
+          <%=image_tag @user.picture, class: "img-responsive img-circle center-block" %>
+        </div>
+        <div class="col-sm-8">
+          <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+          <h2><%= @user.address1 %></h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ratione praesentium, reprehenderit maiores similique eveniet sed facilis fuga itaque autem amet officiis aut saepe iure libero nam accusantium sunt provident!</p>
+          <!-- Editer profil -->
+          <% if @user.id== current_user.id %>
+            <%= link_to edit_user_registration_path do %>
+            <p><i class="fa fa-pencil"></i> Éditer mon profil</p>
             <% end %>
-         </div>
-        <% end %>
-      </div>
-
-      <div class="col-sm-offset-2 col-sm-10">
-         <h3>Ses emprunts</h3>
-          <% @bookings.each do |booking| %>
-         <div class="col-xs-6 col-sm-2">
-             <div class="card small" style="background-image:url('<%= image_url booking.offer.book.image %>')"></div>
-         </div>
-         <% end %>
-      </div>
-      </div>
-
-       <div class="col-sm-offset-2 col-sm-10">
-         <h3>Ses demandes</h3>
-         <% @lendings.each do |lending| %>
-         <div class="col-xs-12 col-sm-12">
-          <div class="col-xs-6 col-md-2">
-             <div class="card xsmall" style="background-image:url('<%= image_url lending.offer.book.image %>')"></div>
-          </div>
-            <div class="col-xs-12 col-sm-8"><%= lending.offer.book.title %></div>
-
-             <div class="col-xs-6 col-sm-2">
-              <button class="btn btn-success" type="submit">Accepter</button>
-             </div>
-         </div>
-         <% end %>
+          <% end %>
         </div>
       </div>
-
-      <div class="col-sm-offset-2 col-sm-10">
-         <h3>Ses commentaires</h3>
-      </div>
-
     </div>
   </div>
 </div>
-
+<div class="container">
+  <div class="row"><!--Debut row-->
+    <div class="padded">
+      <div class="col-sm-12">
+        <h2 class="text-center">Ses livres</h2>
+        <% @books.each do |book| %>
+         <div class="card-book">
+            <div class="col-xs-12 col-sm-4">
+             <%= link_to book_path(book) do %>
+               <div class="card-image" style='background-image: url("<%= image_url book.image %>")'></div>
+             <% end %>
+               <div class="card">
+                 <h2><%= book.title %></h2>
+                 <p><%= book.category %></p>
+                 <h4><%= book.author %></h4>
+                 <h4 class="card-footer"><i class="fa fa-map-marker fa-lg green"></i> <%= book.offers.count%> prêteurs</h4>
+               </div>
+             </div>
+           </div>
+        <% end %>
+      </div>
+    </div>
+  </div><!--Fin row-->
+  <div class="row"><!--Debut row-->
+    <div class="padded">
+      <div class="col-sm-12">
+        <h2 class="text-center">Ses emprunts</h2>
+        <% @bookings.each do |booking| %>
+         <div class="card-book">
+            <div class="col-xs-12 col-sm-4">
+               <div class="card-image" style="background-image:url('<%= image_url booking.offer.book.image %>')"></div>
+               <div class="card">
+                 <h2><%= booking.offer.book.title %></h2>
+                 <p><%= booking.offer.book.category %></p>
+                 <h4><%= booking.offer.book.author %></h4>
+               </div>
+             </div>
+           </div>
+        <% end %>
+      </div>
+    </div>
+  </div><!--Fin row-->
+  <div class="row"><!--Debut row-->
+    <div class="padded">
+      <div class="col-sm-12">
+        <h2 class="text-center">Ses demandes</h2>
+        <% @lendings.each do |lending| %>
+         <div class="card-book">
+            <div class="col-xs-12 col-sm-4">
+               <div class="card-image" style="background-image:url('<%= image_url lending.offer.book.image %>')"></div>
+               <div class="card">
+                 <h2><%= lending.offer.book.title %></h2>
+                 <p><%= lending.offer.book.category %></p>
+                 <h4><%= lending.offer.book.author %></h4>
+                 <button class="btn btn-success" type="submit">Accepter</button>
+               </div>
+             </div>
+           </div>
+        <% end %>
+      </div>
+    </div>
+  </div><!--Fin row-->
+</div>
