@@ -7,12 +7,18 @@
     color: #ffffff;
     position:relative;
     font-size: 3em;
-    padding: 2em 0 6em 0;
+    text-align:center;
+    padding: 1em 0;
   }
   img {
     position: absolute;
     top: 50%;
     left: 50%;
+  }
+  &.banner-home h1{
+    padding: 2em 0 6em 0;
+    text-align:left;
+
   }
 }
 

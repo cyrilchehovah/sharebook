@@ -22,7 +22,6 @@
 //= require gmaps/google
 
 $(function() {
-  $(".popover-if-empty").popover('show');
   $(".popover-if-empty").on("change keyup", function() {
     if ($(this).val() == "") {
       $(".popover-if-empty").popover('show');
@@ -31,7 +30,15 @@ $(function() {
     }
   })
 
+  $('.address').keyup(function(){
+    if($(this).val().length !=0)
+      $('.sendButton').attr('disabled', false);
+    else
+      $('.sendButton').attr('disabled',true);
+    })
+
 });
+
 
 function initializeAutocomplete(id) {
   var element = document.getElementById(id);
