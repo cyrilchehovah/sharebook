@@ -1,11 +1,23 @@
+
 <h1 class="text-center">New offer</h1>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
     <%= simple_form_for @offer do |f| %>
       <%= f.input :book_id, collection: Book.all %>
-      <%= f.button :submit , class: "btn btn-primary" %>
+      <% if @user.address1 == nil or @user.address1.empty? %>
+       <%= f.button :submit , class: "btn btn-primary able-button", disabled: true %>
+      <% else %>
+        <%= f.button :submit , class: "btn btn-primary able-button" %>
+      <% end %>
     <% end %>
     </div>
   </div>
 </div>
+
+<% if @user.address1 == nil or @user.address1.empty? %>
+  <% content_for(:alert) do %>
+    Vous ne pouvez pas ajouter de livre sans avoir renseigné votre lieu déchange.
+    <%= link_to('Éditer votre profil', edit_user_registration_path) %>
+  <% end %>
+<% end %>

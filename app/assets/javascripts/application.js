@@ -22,7 +22,6 @@
 //= require gmaps/google
 
 $(function() {
-  $(".popover-if-empty").popover('show');
   $(".popover-if-empty").on("change keyup", function() {
     if ($(this).val() == "") {
       $(".popover-if-empty").popover('show');
@@ -30,8 +29,8 @@ $(function() {
       $(".popover-if-empty").popover('hide');
     }
   })
-
 });
+
 
 function initializeAutocomplete(id) {
   var element = document.getElementById(id);
