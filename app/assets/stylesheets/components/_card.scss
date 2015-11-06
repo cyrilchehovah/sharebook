@@ -8,12 +8,17 @@
   a:hover{
       text-decoration: none;
   }
+    .medium {
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+    }
+    .small {
+      height: 150px;
+      background-size: cover;
+      background-position: center center;
+    }
 
-.img-medium {
-  height: 300px;
-  background-size: cover;
-  background-position: center center;
-}
 
 .card-testimonial{
   background-color: white;
