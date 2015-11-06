@@ -28,12 +28,9 @@
 
       <div class="col-sm-offset-2 col-sm-10">
          <h3>Ses emprunts</h3>
-          <% @offers.each do |offer|%>
+          <% @bookings.each do |booking|%>
          <div class="col-xs-6 col-sm-2">
-
-            <%= link_to offer_booking_path(offer), :class => "card" do %>
-             <div class="small" style="background-image:url('<%= image_url offer_booking.image %>')"></div>
-            <% end %>
+             <div class="small" style="background-image:url('<%= image_url booking.offer.book.image %>')"></div>
          </div>
          <% end %>
       </div>
