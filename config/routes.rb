@@ -7,6 +7,8 @@ Rails.application.routes.draw do
      resources :bookings, only: [:create, :show, :update]
    end
 
+   resources :offers, only: [:destroy]
+
   resources :books, only: [:index, :show]
 
   root to: "pages#home"

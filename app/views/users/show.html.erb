@@ -7,7 +7,7 @@
           <% if @user.picture? %>
               <%= image_tag @user.picture, class: "img-responsive img-circle center-block" %>
           <%  else %>
-             <%= image_tag @user.picture.url(:medium) %>
+             <%= image_tag @user.picture.url(:medium†) %>
 
          <% end %>
 
@@ -48,6 +48,7 @@
                  <p><%= offer.book.category %></p>
                  <h4><%= offer.book.author %></h4>
                  <h4 class="card-footer"><i class="fa fa-map-marker fa-lg green"></i> <%= offer.book.offers.count%> prêteurs</h4>
+                 <h4><%= link_to "delete", offer_path(offer), method: :delete %></h4>
                </div>
              </div>
            </div>

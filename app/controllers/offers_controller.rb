@@ -24,6 +24,12 @@ class OffersController < ApplicationController
       end
   end
 
+  def destroy
+    @offer = Offer.find(params[:id])
+    @offer.destroy
+    redirect_to :back
+  end
+
   private
   def set_book
     @book = Book.find(params[:offer][:book_id])
