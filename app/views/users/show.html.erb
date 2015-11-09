@@ -65,6 +65,43 @@
                  <p><%= booking.offer.book.category %></p>
                  <h4><%= booking.offer.book.author %></h4>
                </div>
+               <% if booking.accepted? %>
+                 <p>Demande acceptée</p>
+               <% else %>
+                 <p>Demande en attente</p>
+                 <% end %>
+             </div>
+           </div>
+        <% end %>
+      </div>
+    </div>
+  </div><!--Fin row-->
+
+  <div class="row"><!--Debut row-->
+    <div class="padded">
+      <div class="col-sm-12">
+        <h2 class="text-center">Ses demandes</h2>
+        <% @lendings.each do |lending| %>
+         <div class="card-book">
+            <div class="col-xs-12 col-sm-4">
+
+               <div class="card-image" style="background-image:url('<%= image_url lending.offer.book.image %>')"></div>
+
+               <div class="card">
+                <h2><%= lending.offer.book.title %></h2>
+                <p><%= lending.offer.book.category %></p>
+                <h4><%= lending.offer.book.author %></h4>
+
+               </div>
+
+              <% if lending.accepted? %>
+                <p>Demande en cours</p>
+              <% else %>
+                <%= simple_form_for [lending.offer, lending] do |f| %>
+                  <%= f.hidden_field :accepted, value: true%>
+                  <%= f.submit "Accepter la demande", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
              </div>
            </div>
         <% end %>
