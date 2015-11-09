@@ -16,6 +16,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 gem 'figaro'
+gem 'aws-sdk', '< 2.0'
+gem 'paperclip'
 
 #Google map
 gem "geocoder"
