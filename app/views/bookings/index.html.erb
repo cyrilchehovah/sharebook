@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Index Booking</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Mes demandes</h4>
+      <% @borrow_bookings.each do |booking| %>
+        <h2><%= booking.offer.book.title%></h2>
+        <p><%= booking.offer.user.first_name%> - <span class="badge"><%= booking.accepted %></span></p>
+        <hr>
+      <% end %>
+
+      <h4>Mes emprunts</h4>
+      <% @lend_bookings.each do |lending| %>
+        <h2><%= lending.offer.book.title%></h2>
+        <p><%= lending.offer.user.first_name%> - <span class="badge"><%= lending.accepted %></span></p>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
