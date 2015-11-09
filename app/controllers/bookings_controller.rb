@@ -5,6 +5,9 @@ class BookingsController < ApplicationController
     @lend_bookings = Booking.where(offer: current_user.offers)
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
   def create
     @offer = Offer.find(params[:offer_id])
     @booking = Booking.create(user: current_user, offer: @offer)
