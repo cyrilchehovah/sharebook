@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :offers
   has_many :bookings
+  has_many :messages
   has_many :offers_bookings, through: :offers, source: :bookings
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
