@@ -25,7 +25,16 @@
           </div>
 
       <% else %>
+        <%= link_to bookings_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+          <div class="icon-badge-container">
+            <i class="fa fa-envelope-o"></i>
+            <div class="icon-badge icon-badge-blue">2</div>
+          </div>
+        <% end %>
+        <hr>
+
         <div class="navbar-wagon-item">
+
           <div class="dropdown">
             <%= image_tag current_user.picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">

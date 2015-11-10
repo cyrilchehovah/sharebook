@@ -1,5 +1,5 @@
 <div id="messages-buttons">
-  <% if current_user == @owner %>
+  <% if current_user == @owner && @booking.accepted != true %>
       <%= simple_form_for @booking, :remote => true do |f| %>
         <%= f.hidden_field :accepted, value: true%>
         <%= f.submit "Accepter la demande", class: "btn btn-primary" %>
