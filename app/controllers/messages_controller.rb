@@ -5,6 +5,9 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params_message)
     @message.booking = @booking
+    @message.author = current_user.first_name
+
+
       if @message.valid?
         @message.save
         redirect_to booking_path(@booking)

@@ -14,6 +14,7 @@
       <% @lend_bookings.each do |lending| %>
         <h2><%= lending.offer.book.title%></h2>
         <p><%= lending.offer.user.first_name%> - <span class="badge"><%= lending.accepted %></span></p>
+        <%= link_to 'voir le message', booking_path(lending), remote: :true %> <br>
         <hr>
       <% end %>
     </div>
