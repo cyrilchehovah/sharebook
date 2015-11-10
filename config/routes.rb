@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :offers, only: [:index, :new, :create]do
+  resources :offers, only: [:index, :new, :create, :update]do
      resources :bookings, only: [:create, :show, :update]
    end
 

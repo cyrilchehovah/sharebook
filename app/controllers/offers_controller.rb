@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_book, only: [:create, :show]
+  before_action :set_book, only: [:create, :show, :update, :destroy]
   before_action :set_user, only: [:create, :new]
 
   def index
@@ -27,7 +27,7 @@ class OffersController < ApplicationController
   def destroy
     @offer = Offer.find(params[:id])
     @offer.destroy
-    redirect_to :back
+    # redirect_to :back
   end
 
   private
