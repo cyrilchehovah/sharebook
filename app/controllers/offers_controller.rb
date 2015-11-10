@@ -24,6 +24,10 @@ class OffersController < ApplicationController
     end
   end
 
+  def create_book_and_offer
+    # how to create a new book while creating a new offer????
+  end
+
   private
   def set_book
     @book = Book.find(params[:offer][:book_id])

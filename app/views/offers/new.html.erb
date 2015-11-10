@@ -1,4 +1,11 @@
 
+<% if @user.address1 == nil or @user.address1.empty? %>
+  <% content_for(:alert) do %>
+    Vous ne pouvez pas ajouter de livre sans avoir renseigné votre lieu déchange.
+    <%= link_to('Éditer votre profil', edit_user_registration_path) %>
+  <% end %>
+<% end %>
+
 <h1 class="text-center">New offer</h1>
 <div class="container">
   <div class="row">
@@ -19,12 +26,7 @@
 </div>
 
 
-<% if @user.address1 == nil or @user.address1.empty? %>
-  <% content_for(:alert) do %>
-    Vous ne pouvez pas ajouter de livre sans avoir renseigné votre lieu déchange.
-    <%= link_to('Éditer votre profil', edit_user_registration_path) %>
-  <% end %>
-<% end %>
+
 
 <%= content_for :after_js do %>
   <%= javascript_tag do %>
@@ -57,7 +59,9 @@
                 '</div>'
               )
             }
-            $('.card-book')
+            $('.card-book').on('click', function() {
+
+            })
           },
           error: function(data) {
             console.log('Some error occurred');
