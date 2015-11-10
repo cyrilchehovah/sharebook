@@ -11,7 +11,7 @@ class Booking < ActiveRecord::Base
   private
 
   def send_first_message
-    Message.create(content: "Salut, untel veut t'emprunter ce livre", user: user, booking: self)
+    Message.create(content: "Salut, #{user.first_name} veut t'emprunter ce livre", user: user, booking: self)
   end
 
 end
