@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151109143020) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,7 +45,6 @@ ActiveRecord::Schema.define(version: 20151109143020) do
     t.integer  "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "author"
   end
 
   add_index "messages", ["booking_id"], name: "index_messages_on_booking_id", using: :btree
