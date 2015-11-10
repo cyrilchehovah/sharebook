@@ -2,10 +2,6 @@ class MessagesController < ApplicationController
 
   before_action :set_booking
 
-  def new
-    @message = Message.new
-  end
-
   def create
     @message = Message.new(params_message)
     @message.booking = @booking
@@ -13,7 +9,7 @@ class MessagesController < ApplicationController
         @message.save
         redirect_to booking_path(@booking)
       else
-        render :new
+        render "bookings/show"
       end
   end
 
@@ -25,7 +21,7 @@ class MessagesController < ApplicationController
   end
 
   def params_message
-    params.require(:message).permit(:content, :booking_id)
+    params.require(:message).permit(:content)
   end
 end
 

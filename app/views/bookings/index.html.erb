@@ -7,7 +7,6 @@
         <h2><%= booking.offer.book.title%></h2>
         <p><%= booking.offer.user.first_name%> - <span class="badge"><%= booking.accepted %></span></p>
         <%= link_to 'voir le message', booking_path(booking) %> <br>
-        <%= link_to 'écrire un message', new_booking_message_path(booking) %>
         <hr>
       <% end %>
 

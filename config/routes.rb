@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show]
 
   resources :bookings, only: [:index, :show] do
-    resources :messages, only: [:new, :create]
+    resources :messages, only: [:create]
   end
 
   root to: "pages#home"
