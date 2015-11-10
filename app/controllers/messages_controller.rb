@@ -5,20 +5,20 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params_message)
     @message.booking = @booking
-    @message.author = current_user.first_name
+    @message.user = current_user
 
-
-      if @message.valid?
-        @message.save
-        redirect_to booking_path(@booking)
-      else
-        render "bookings/show"
+    if @message.valid?
+      @message.save
+      respond_to do |format|
+        format.html{}
+        format.js{}
       end
-
-    respond_to do |format|
-      format.html{}
-      format.js{}
+      redirect_to booking_path(@booking)
+    else
+      render "bookings/show"
     end
+
+
 
   end
 

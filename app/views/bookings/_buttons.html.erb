@@ -1,0 +1,10 @@
+<% if current_user == @owner %>
+    <%= simple_form_for @booking, :remote => true do |f| %>
+      <%= f.hidden_field :accepted, value: true%>
+      <%= f.submit "Accepter la demande", class: "btn btn-primary" %>
+    <% end %>
+
+<% else %>
+  <p class="badge"><%= @booking.accepted %></p>
+
+<% end %>

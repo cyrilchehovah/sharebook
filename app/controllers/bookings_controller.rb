@@ -8,27 +8,28 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @message = Message.new
+    @owner = @booking.offer.user
 
     respond_to do |format|
-      format.html{}
+      format.html{redirect_to booking_path(@booking)}
       format.js{}
     end
   end
   def create
     @offer = Offer.find(params[:offer_id])
     @booking = Booking.create(user: current_user, offer: @offer)
-    redirect_to offer_bookings_path(@offer)
+    redirect_to bookings_path
   end
 
   def update
     # TODO
     # update booking
     @booking = Booking.find(params[:id])
-    if @booking.update(params_booking)
-      redirect_to user_path(current_user)
-    # redirect_to
-    else
-      render user_path
+    @booking.update(params_booking)
+
+    respond_to do |format|
+      format.html{redirect_to booking_path(@booking)}
+      format.js{}
     end
   end
 
