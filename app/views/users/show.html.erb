@@ -4,12 +4,7 @@
 
       <div class="row">
         <div class="col-sm-4">
-          <% if @user.picture? %>
-          <%= image_tag @user.picture, class: "img-responsive img-circle center-block" %>
-          <%  else %>
-          <%= image_tag @user.picture.url(:medium) %>
-
-          <% end %>
+          <%= image_tag (@user.profil_img ? @user.profil_img : @user.picture.url(:medium)), class: "img-responsive img-circle center-block" %>
 
         </div>
 
