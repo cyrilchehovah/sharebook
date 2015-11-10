@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @message = Message.new
+
     respond_to do |format|
       format.html{}
       format.js{}
