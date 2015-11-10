@@ -11,6 +11,12 @@ class MessagesController < ApplicationController
       else
         render "bookings/show"
       end
+
+    respond_to do |format|
+      format.html{}
+      format.js{}
+    end
+
   end
 
 
