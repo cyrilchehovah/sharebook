@@ -33,28 +33,29 @@
 
 
 <div class="container">
+
   <div class="row"><!--Debut row-->
     <div class="padded">
       <div class="col-sm-12">
         <h2 class="text-center">Ses livres</h2>
         <% @offers.each do |offer| %>
-
         <div class="card-book">
           <div class="col-xs-12 col-sm-4">
-           <%= link_to book_path(offer.book) do %>
-              <div class="card-image" style='background-image: url("<%= image_url offer.book.image %>")'></div>
-           <% end %>
-           <div class="card">
-             <h2><%= offer.book.title %></h2>
-             <p><%= offer.book.category %></p>
-             <h4><%= offer.book.author %></h4>
-             <h4 class="card-footer"><i class="fa fa-map-marker fa-lg green"></i> <%= offer.book.offers.count%> prêteurs</h4>
-             <%= link_to( offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
-              <i class="fa fa-trash-o">delete</i>
+             <%= link_to book_path(offer.book) do %>
+                <div class="card-image" style='background-image: url("<%= image_url offer.book.image %>")'></div>
              <% end %>
-           </div>
-         </div>
-       </div>
+             <div class="card">
+               <h2><%= offer.book.title %></h2>
+               <p><%= offer.book.category %></p>
+               <h4><%= offer.book.author %></h4>
+               <h4 class="card-footer"><i class="fa fa-map-marker fa-lg green"></i> <%= offer.book.offers.count%> prêteurs</h4>
+
+             </div>
+             <%= link_to( offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
+             <i class="fa fa-trash-o"></i>
+             <% end %>
+          </div>
+        </div>
        <% end %>
      </div>
    </div>
