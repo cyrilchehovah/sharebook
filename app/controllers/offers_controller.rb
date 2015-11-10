@@ -16,12 +16,16 @@ class OffersController < ApplicationController
     @offer.book = @book
     @offer.user = @user
 
-      if @offer.valid?
-        @offer.save
-        redirect_to books_path()
-      else
-        render :new
-      end
+    if @offer.valid?
+      @offer.save
+      redirect_to books_path()
+    else
+      render :new
+    end
+  end
+
+  def create_book_and_offer
+    # how to create a new book while creating a new offer????
   end
 
   def destroy
