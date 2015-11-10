@@ -6,7 +6,7 @@
       <% @borrow_bookings.each do |booking| %>
         <h2><%= booking.offer.book.title%></h2>
         <p><%= booking.offer.user.first_name%> - <span class="badge"><%= booking.accepted %></span></p>
-        <%= link_to 'voir le message', booking_path(booking) %> <br>
+        <%= link_to 'voir le message', booking_path(booking), remote: :true %> <br>
         <hr>
       <% end %>
 
@@ -14,8 +14,12 @@
       <% @lend_bookings.each do |lending| %>
         <h2><%= lending.offer.book.title%></h2>
         <p><%= lending.offer.user.first_name%> - <span class="badge"><%= lending.accepted %></span></p>
+        <%= link_to 'voir le message', booking_path(lending), remote: :true %> <br>
         <hr>
       <% end %>
+    </div>
+
+    <div class="col-md-9" id="messages">
     </div>
   </div>
 </div>
