@@ -1,9 +1,18 @@
 class BookingsController < ApplicationController
 
+  def index
+    @borrow_bookings = Booking.where(user: current_user)
+    @lend_bookings = Booking.where(offer: current_user.offers)
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+    @message = Message.new
+  end
   def create
     @offer = Offer.find(params[:offer_id])
     @booking = Booking.create(user: current_user, offer: @offer)
-    redirect_to user_path(current_user)
+    redirect_to offer_bookings_path(@offer)
   end
 
   def update

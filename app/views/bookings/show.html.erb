@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <h1>Show Booking</h1>
+    <h2><%= @booking.offer.book.title%></h2>
+    <% @booking.messages.each do |message| %>
+      <p><%= message.content %></p>
+    <% end %>
+
+    <%= simple_form_for [@booking, @message] do |f| %>
+      <%= f.input :content %>
+      <%= f.submit "envoyer", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

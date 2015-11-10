@@ -4,12 +4,16 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :offers, only: [:index, :new, :create, :update]do
-     resources :bookings, only: [:create, :show, :update]
-   end
+     resources :bookings, only: [:create, :update]
+
 
    resources :offers, only: [:destroy]
 
   resources :books, only: [:index, :show]
+
+  resources :bookings, only: [:index, :show] do
+    resources :messages, only: [:create]
+  end
 
   root to: "pages#home"
 
