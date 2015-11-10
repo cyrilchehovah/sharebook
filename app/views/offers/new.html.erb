@@ -11,13 +11,59 @@
         <%= f.button :submit , class: "btn btn-primary able-button" %>
       <% end %>
     <% end %>
+    <input type="text" id="q">
+    </div>
+    <div id="results">
     </div>
   </div>
 </div>
+
 
 <% if @user.address1 == nil or @user.address1.empty? %>
   <% content_for(:alert) do %>
     Vous ne pouvez pas ajouter de livre sans avoir renseigné votre lieu déchange.
     <%= link_to('Éditer votre profil', edit_user_registration_path) %>
+  <% end %>
+<% end %>
+
+<%= content_for :after_js do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('#q').on('keyup', function() {
+        $.ajax({
+          type: "GET",
+          url: "https://www.googleapis.com/books/v1/volumes?q=" + $('#q').val() + "&key=" + '<%= ENV["GOOGLE_API_KEY"] %>',
+          success: function(data) {
+            $('#results').html('')
+            for(i=0;i<data.items.length;i++) {
+              $('#results').append(
+                '<div class="card-book" id=result_' + i + '>' +
+                  '<div class="col-xs-12 col-sm-4">' +
+                    '<div class="card-image" style=background-image:url("' +
+                      data.items[i]["volumeInfo"]["imageLinks"]["thumbnail"] +
+                    '")></div>' +
+                    '<div class="card">' +
+                      '<h2>' +
+                        data.items[i]["volumeInfo"]["title"] +
+                      '</h2>' +
+                      '<p>' +
+                        data.items[i]["volumeInfo"]["subtitle"] +
+                      '</p>' +
+                      '<h4>' +
+                        data.items[i]["volumeInfo"]["authors"][0] +
+                      '</h4>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>'
+              )
+            }
+            $('.card-book')
+          },
+          error: function(data) {
+            console.log('Some error occurred');
+          }
+        })
+      })
+    })
   <% end %>
 <% end %>

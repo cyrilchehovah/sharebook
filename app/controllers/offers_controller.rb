@@ -16,12 +16,12 @@ class OffersController < ApplicationController
     @offer.book = @book
     @offer.user = @user
 
-      if @offer.valid?
-        @offer.save
-        redirect_to books_path()
-      else
-        render :new
-      end
+    if @offer.valid?
+      @offer.save
+      redirect_to books_path()
+    else
+      render :new
+    end
   end
 
   private
