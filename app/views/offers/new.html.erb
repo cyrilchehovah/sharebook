@@ -9,24 +9,18 @@
 <h1 class="text-center">New offer</h1>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-    <%= simple_form_for @offer do |f| %>
-      <%= f.input :book_id, collection: Book.all %>
-      <% if @user.address1 == nil or @user.address1.empty? %>
-       <%= f.button :submit , class: "btn btn-primary able-button", disabled: true %>
-      <% else %>
-        <%= f.button :submit , class: "btn btn-primary able-button" %>
-      <% end %>
-    <% end %>
     <input type="text" id="q">
-    </div>
-    <div id="results">
-    </div>
+  </div>
+  <div id="results">
   </div>
 </div>
 
-
-
+<%= form_for(@book, url: book_offer_path) do |f| %>
+  <%= f.text_field :title, class: "hidden" %>
+  <%= f.text_field :description, class: "hidden" %>
+  <%= f.text_field :image, class: "hidden" %>
+  <%= f.text_field :author, class: "hidden" %>
+<% end %>
 
 <%= content_for :after_js do %>
   <%= javascript_tag do %>
@@ -36,13 +30,15 @@
           type: "GET",
           url: "https://www.googleapis.com/books/v1/volumes?q=" + $('#q').val() + "&key=" + '<%= ENV["GOOGLE_API_KEY"] %>',
           success: function(data) {
-            $('#results').html('')
+            $('#results').html('');
+            console.log(data);
             for(i=0;i<data.items.length;i++) {
               $('#results').append(
                 '<div class="card-book" id=result_' + i + '>' +
                   '<div class="col-xs-12 col-sm-4">' +
                     '<div class="card-image" style=background-image:url("' +
-                      data.items[i]["volumeInfo"]["imageLinks"]["thumbnail"] +
+"http://placehold.it/350x150"
+                      +
                     '")></div>' +
                     '<div class="card">' +
                       '<h2>' +
@@ -51,23 +47,33 @@
                       '<p>' +
                         data.items[i]["volumeInfo"]["subtitle"] +
                       '</p>' +
-                      '<h4>' +
-                        data.items[i]["volumeInfo"]["authors"][0] +
-                      '</h4>' +
+
                     '</div>' +
                   '</div>' +
                 '</div>'
               )
             }
-            $('.card-book').on('click', function() {
-
-            })
           },
           error: function(data) {
             console.log('Some error occurred');
           }
-        })
+        });
+      });
+      $('.card-image').on('click', function() {
+        $ajax({
+          type: "POST",
+          url: "book_offer",
+          success: function(data) {
+          var index = $(this).parent().parent().attr('id').slice($(this).parent().parent().attr('id').lastIndexOf('_') + 1)
+          console.log(data.items[index]);
+          $('#book_title').val(data.items[index]["volumeInfo"]["title"]);
+          $('#book_description').val(data.items[index]["volumeInfo"]["description"]);
+          setTimeout(function() {
+            $('#new_book').submit();
+          }, 500);
+        }
       })
-    })
+      });
+    });
   <% end %>
 <% end %>

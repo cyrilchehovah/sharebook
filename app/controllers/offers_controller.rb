@@ -8,24 +8,52 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
+    @book = Book.new
   end
 
 
-  def create
-    @offer = @book.offers.new(params_offer)
-    @offer.book = @book
-    @offer.user = @user
+  # def create
+  #   @offer = @book.offers.new(params_offer)
+  #   @offer.book = @book
+  #   @offer.user = @user
 
-    if @offer.valid?
-      @offer.save
-      redirect_to books_path()
-    else
-      render :new
-    end
-  end
+  #   if @offer.valid?
+  #     @offer.save
+  #     redirect_to books_path()
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def create_book_and_offer
-    # how to create a new book while creating a new offer????
+    @book = Book.find_by(title: params[:book][:title])
+
+    if @book == Book.where(title: @book.title)
+      # créer une offer sur le book existant
+      @offer = @book.offers.new(params_offer)
+      @offer.book = @book
+      @offer.user = @user
+
+      if @offer.valid?
+        @offer.save
+        redirect_to books_path()
+      else
+        render :new
+      end
+    else
+      # créer le book, puis l'offer
+      @book = Book.new(params_book)
+      @offer = @book.offers.new(params_offer)
+      @offer.book = @book
+      @offer.user = @user
+
+      if @offer.valid?
+        @offer.save
+        redirect_to books_path()
+      else
+        render :new
+      end
+    end
   end
 
   def destroy
@@ -44,6 +72,10 @@ class OffersController < ApplicationController
 
   def params_offer
     params.require(:offer).permit(:user_id, :book_id)
+  end
+
+  def params_book
+    params.require(:book).permit(:title, :description, :category, :author, :image)
   end
 
 end
