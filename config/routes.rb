@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  post 'book_offer', to: 'offers#create_book_and_offer', as: 'book_offer'
+
   root to: "pages#home"
 
 

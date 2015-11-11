@@ -3,14 +3,12 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-
     @array = []
     @books.each do |book|
       if book.offers[0] != nil
         @array << book
       end
     end
-
   end
 
   def show
@@ -28,6 +26,13 @@ class BooksController < ApplicationController
       # <br>"
     end
   end
+
+  private
+
+  def params_book
+    params.require(:book).permit(:title, :description, :category, :author, :image)
+  end
+
 end
 
 
