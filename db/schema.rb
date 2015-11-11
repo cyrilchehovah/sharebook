@@ -34,8 +34,12 @@ ActiveRecord::Schema.define(version: 20151111094503) do
     t.text     "description"
     t.string   "category"
     t.string   "author"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.string   "image"
   end
 
@@ -45,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151111094503) do
     t.integer  "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "author"
     t.datetime "read_at"
   end
 

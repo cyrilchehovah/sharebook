@@ -6,4 +6,5 @@ class UsersController < ApplicationController
     @bookings = @user.bookings
     @lendings = Booking.where(offer: @offers)
   end
+
 end
