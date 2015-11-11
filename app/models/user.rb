@@ -32,6 +32,25 @@ class User < ActiveRecord::Base
     end
   end
 
+  def messages_sent_to_you
+    messages = []
+    my_offers_bookings = Booking.where(offer: offers)
+    other_bookings = bookings
+    bkgs = (my_offers_bookings + other_bookings).flatten
+    bkgs.each do |bkg|
+      messages << bkg.messages
+    end
+    messages.flatten.select { |message| self != message.user }
+  end
+
+  def unread_messages
+    messages_sent_to_you.select { |message| message.read_at.nil? }
+  end
+
+  def unread_messages_count
+    unread_messages.count
+  end
+
   geocoded_by :address1
   before_validation :geocode, if: :address1_changed?
 

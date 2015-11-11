@@ -9,6 +9,15 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @message = Message.new
     @owner = @booking.offer.user
+    @messages = []
+    @booking.messages.each do |message|
+      @messages << message
+      if message.user != current_user
+        message.read_at = DateTime.now
+        message.save
+      end
+    end
+    @messages.sort_by!(&:created_at).reverse
 
     respond_to do |format|
       format.html{redirect_to booking_path(@booking)}
