@@ -17,9 +17,6 @@ class MessagesController < ApplicationController
     else
       render "bookings/show"
     end
-
-
-
   end
 
 

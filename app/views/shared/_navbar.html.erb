@@ -28,7 +28,7 @@
         <%= link_to bookings_path, class: "navbar-wagon-item navbar-wagon-link" do %>
           <div class="icon-badge-container">
             <i class="fa fa-envelope-o"></i>
-            <div class="icon-badge icon-badge-blue">2</div>
+            <div class="icon-badge icon-badge-blue" id="counter"><%= current_user.unread_messages_count %></div>
           </div>
         <% end %>
         <hr>
