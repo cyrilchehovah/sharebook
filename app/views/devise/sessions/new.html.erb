@@ -22,7 +22,7 @@
       </div>
 
       <%= link_to omniauth_authorize_path(resource_name, :facebook), class: "btn btn-primary btn-facebook" do %>
-        <i class="fa fa-facebook fa-2x fb-button" ></i>Sign in with<%= :facebook.to_s.titleize %>
+        <i class="fa fa-facebook fa-2x fb-button" ></i>Sign in with <%= :facebook.to_s.titleize %>
       <% end %>
 
       <%= render "devise/shared/links" %>
