@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
+    as :user do
+      get 'users/edit', :to => 'devise/registrations#edit', :as => :user_root
+    end
 
   resources :users, only: [:show]
 
