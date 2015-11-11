@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :offers_bookings, through: :offers, source: :bookings
 
    has_attached_file :picture,
-   styles: { medium: "300x300>", thumb: "100x100>" }
+   styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "http://placehold.it/200x200"
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/

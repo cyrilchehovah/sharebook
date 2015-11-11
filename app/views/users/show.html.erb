@@ -25,8 +25,6 @@
   </div>
 </div>
 
-
-
 <div class="container">
 
   <div class="row"><!--Debut row-->
@@ -34,7 +32,7 @@
       <div class="col-sm-12">
         <h2 class="text-center">Ses livres</h2>
         <% @offers.each do |offer| %>
-        <div class="card-book">
+         <div class="card-book">
           <div class="col-xs-12 col-sm-4">
              <%= link_to book_path(offer.book) do %>
                 <div class="card-image" style='background-image: url("<%= image_url offer.book.image %>")'></div>
@@ -50,11 +48,11 @@
              <i class="fa fa-trash-o"></i>
              <% end %>
           </div>
-        </div>
-       <% end %>
-     </div>
-   </div>
- </div><!--Fin row-->
+         </div>
+        <% end %>
+      </div>
+    </div>
+  </div><!--Fin row-->
 
  <div class="row"><!--Debut row-->
   <div class="padded">
