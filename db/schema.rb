@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112164228) do
+ActiveRecord::Schema.define(version: 20151112110121) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +63,16 @@ ActiveRecord::Schema.define(version: 20151112164228) do
   add_index "offers", ["book_id"], name: "index_offers_on_book_id", using: :btree
   add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
 
+  create_table "owner_to_reader_reviews", force: :cascade do |t|
+    t.integer  "booking_id"
+    t.integer  "reader_rating"
+    t.string   "reader_comment"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "owner_to_reader_reviews", ["booking_id"], name: "index_owner_to_reader_reviews_on_booking_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -102,4 +113,5 @@ ActiveRecord::Schema.define(version: 20151112164228) do
   add_foreign_key "messages", "users"
   add_foreign_key "offers", "books"
   add_foreign_key "offers", "users"
+  add_foreign_key "owner_to_reader_reviews", "bookings"
 end
