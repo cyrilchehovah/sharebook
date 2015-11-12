@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
-  before_action :set_book, only: [:create, :show, :update]
-  before_action :set_user, only: [:create, :new, :destroy]
+  before_action :set_book, only: [:create, :update, :show]
+  before_action :set_user, only: [:create, :create_book_and_offer, :new, :destroy]
 
   def index
     @offers = Offer.all
@@ -28,31 +28,20 @@ class OffersController < ApplicationController
   def create_book_and_offer
     @book = Book.find_by(title: params[:book][:title])
 
-    if @book == Book.where(title: @book.title)
-      # créer une offer sur le book existant
-      @offer = @book.offers.new(params_offer)
-      @offer.book = @book
-      @offer.user = @user
-
-      if @offer.valid?
-        @offer.save
-        redirect_to books_path()
-      else
-        render :new
-      end
-    else
+    if @book == nil
       # créer le book, puis l'offer
       @book = Book.new(params_book)
-      @offer = @book.offers.new(params_offer)
-      @offer.book = @book
-      @offer.user = @user
+      @book.sync_with_amazon
+    end
 
-      if @offer.valid?
-        @offer.save
-        redirect_to books_path()
-      else
-        render :new
-      end
+    @offer = @book.offers.new
+    @offer.book = @book
+    @offer.user = @user
+
+    if @offer.save
+      redirect_to book_path(@book)
+    else
+      render :new
     end
   end
 
