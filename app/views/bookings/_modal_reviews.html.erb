@@ -1,4 +1,5 @@
-<!-- Button trigger modal -->
+<!-- A mettre sur la page message -->
+
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
     Launch demo modal
   </button>
@@ -13,6 +14,7 @@
         </div>
         <div class="modal-body">
           <%= simple_form_for [@booking, @owner_to_reader_review] do |f| %>
+
             <%= f.input :reader_rating %>
 
           <!-- RATING - Form -->

@@ -8,8 +8,6 @@ class Booking < ActiveRecord::Base
   validates :offer, presence: true
   validates :user, presence: true
 
-
-
   after_create :send_first_message
 
   private
