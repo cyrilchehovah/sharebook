@@ -9,11 +9,14 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+
+          <%= simple_form_for [@booking, @owner_to_reader_review] do |f| %>
+
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Dit nous ce que vous avez pensé de votre échange</h4>
         </div>
         <div class="modal-body">
-          <%= simple_form_for [@booking, @owner_to_reader_review] do |f| %>
+
 
             <%= f.input :reader_rating %>
 
@@ -21,7 +24,7 @@
           <form class="rating-form" action="#" method="post" name="rating-movie">
             <fieldset class="form-group">
 
-              <legend class="form-legend">Rating:</legend>
+              <legend class="form-legend">Note:</legend>
 
               <div class="form-item">
 
@@ -79,14 +82,16 @@
             </fieldset>
           </form>
 
-           <%= f.input :reader_content %>
+           <%= f.input :reader_content, as: :text %>
           <% end %>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Valider</button>
+          <%= f.buton :submit, "Valider", :class => 'btn btn-primary' %>
+          <% end %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Quitter</button>
         </div>
       </div>
     </div>
   </div>
+
