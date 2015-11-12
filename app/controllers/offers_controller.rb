@@ -31,28 +31,17 @@ class OffersController < ApplicationController
     if @book == nil
       # créer le book, puis l'offer
       @book = Book.new(params_book)
-      @offer = @book.offers.new
-      @offer.book = @book
-      @offer.user = @user
+      @book.sync_with_amazon
+    end
 
-      if @offer.valid?
-        @offer.save
-        redirect_to book_path(@book)
-      else
-        render :new
-      end
+    @offer = @book.offers.new
+    @offer.book = @book
+    @offer.user = @user
+
+    if @offer.save
+      redirect_to book_path(@book)
     else
-      # créer une offer sur le book existant
-      @offer = @book.offers.new
-      @offer.book = @book
-      @offer.user = @user
-
-      if @offer.valid?
-        @offer.save
-        redirect_to book_path(@book)
-      else
-        render :new
-      end
+      render :new
     end
   end
 
