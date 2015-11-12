@@ -1,0 +1,26 @@
+<div id="messages-buttons">
+  <% if current_user == @owner && @booking.accepted != true %>
+      <%= simple_form_for @booking, :remote => true do |f| %>
+        <%= f.hidden_field :accepted, value: true%>
+        <%= f.submit "Accepter la demande", class: "btn btn-primary" %>
+      <% end %>
+
+  <% else %>
+    <p class="badge"><%= @booking.accepted %></p>
+
+  <% end %>
+</div>
+
+<h2><%= @booking.offer.book.title%></h2>
+<div id="message-content">
+  <% @messages.each do |message| %>
+    <p><%= message.content %></p>
+    <h4><%= message.user.first_name %> - <%= message.created_at.strftime("%d %b. %Y") %> - <%= message.created_at.strftime("%H:%M") %></h4>
+    <hr>
+  <% end %>
+</div>
+
+<%= simple_form_for [@booking, @message], :remote => true  do  |f| %>
+  <%= f.input :content %>
+  <%= f.submit "envoyer", class: "btn btn-primary", id: "bouton-message" %>
+<% end %>

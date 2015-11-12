@@ -4,12 +4,7 @@
 
       <div class="row">
         <div class="col-sm-4">
-          <% if @user.picture? %>
-              <%= image_tag @user.picture, class: "img-responsive img-circle center-block" %>
-          <%  else %>
-             <%= image_tag @user.picture.url(:medium) %>
-
-         <% end %>
+          <%= image_tag (@user.profil_img ? @user.profil_img : @user.picture.url(:medium)), class: "img-responsive img-circle center-block" %>
 
         </div>
 
@@ -20,9 +15,9 @@
 
           <!-- Editer profil -->
           <% if @user.id== current_user.id %>
-            <%= link_to edit_user_registration_path do %>
-            <p><i class="fa fa-pencil"></i> Éditer mon profil</p>
-            <% end %>
+          <%= link_to edit_user_registration_path do %>
+          <p><i class="fa fa-pencil"></i> Éditer mon profil</p>
+          <% end %>
           <% end %>
         </div>
       </div>
@@ -30,90 +25,93 @@
   </div>
 </div>
 
-
-
 <div class="container">
+
   <div class="row"><!--Debut row-->
     <div class="padded">
       <div class="col-sm-12">
         <h2 class="text-center">Ses livres</h2>
         <% @offers.each do |offer| %>
          <div class="card-book">
-            <div class="col-xs-12 col-sm-4">
+          <div class="col-xs-12 col-sm-4">
              <%= link_to book_path(offer.book) do %>
-               <div class="card-image" style='background-image: url("<%= image_url offer.book.image %>")'></div>
+                <div class="card-image" style='background-image: url("<%= image_url offer.book.image %>")'></div>
              <% end %>
-               <div class="card">
-                 <h2><%= offer.book.title %></h2>
-                 <p><%= offer.book.category %></p>
-                 <h4><%= offer.book.author %></h4>
-                 <h4 class="card-footer"><i class="fa fa-map-marker fa-lg green"></i> <%= offer.book.offers.count%> prêteurs</h4>
-               </div>
+             <div class="card">
+               <h2><%= offer.book.title %></h2>
+               <p><%= offer.book.category %></p>
+               <h4><%= offer.book.author %></h4>
+               <h4 class="card-footer"><i class="fa fa-map-marker fa-lg green"></i> <%= offer.book.offers.count%> prêteurs</h4>
+
              </div>
-           </div>
+             <%= link_to( offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
+             <i class="fa fa-trash-o"></i>
+             <% end %>
+          </div>
+         </div>
         <% end %>
       </div>
     </div>
   </div><!--Fin row-->
 
-  <div class="row"><!--Debut row-->
-    <div class="padded">
-      <div class="col-sm-12">
-        <h2 class="text-center">Ses emprunts</h2>
-        <% @bookings.each do |booking| %>
-         <div class="card-book">
-            <div class="col-xs-12 col-sm-4">
+ <div class="row"><!--Debut row-->
+  <div class="padded">
+    <div class="col-sm-12">
+      <h2 class="text-center">Ses emprunts</h2>
+      <% @bookings.each do |booking| %>
+      <div class="card-book">
+        <div class="col-xs-12 col-sm-4">
 
-               <div class="card-image" style="background-image:url('<%= image_url booking.offer.book.image %>')"></div>
+         <div class="card-image" style="background-image:url('<%= image_url booking.offer.book.image %>')"></div>
 
-               <div class="card">
-                 <h2><%= booking.offer.book.title %></h2>
-                 <p><%= booking.offer.book.category %></p>
-                 <h4><%= booking.offer.book.author %></h4>
-               </div>
-               <% if booking.accepted? %>
-                 <p>Demande acceptée</p>
-               <% else %>
-                 <p>Demande en attente</p>
-                 <% end %>
-             </div>
-           </div>
+         <div class="card">
+           <h2><%= booking.offer.book.title %></h2>
+           <p><%= booking.offer.book.category %></p>
+           <h4><%= booking.offer.book.author %></h4>
+         </div>
+         <% if booking.accepted? %>
+         <p>Demande acceptée</p>
+         <% else %>
+         <p>Demande en attente</p>
+         <% end %>
+       </div>
+     </div>
+     <% end %>
+   </div>
+ </div>
+</div><!--Fin row-->
+
+<div class="row"><!--Debut row-->
+  <div class="padded">
+    <div class="col-sm-12">
+      <h2 class="text-center">Ses demandes</h2>
+      <% @lendings.each do |lending| %>
+      <div class="card-book">
+        <div class="col-xs-12 col-sm-4">
+
+         <div class="card-image" style="background-image:url('<%= image_url lending.offer.book.image %>')"></div>
+
+         <div class="card">
+          <h2><%= lending.offer.book.title %></h2>
+          <p><%= lending.offer.book.category %></p>
+          <h4><%= lending.offer.book.author %></h4>
+
+        </div>
+
+        <% if lending.accepted? %>
+        <p>Demande en cours</p>
+        <% else %>
+        <%= simple_form_for [lending.offer, lending] do |f| %>
+        <%= f.hidden_field :accepted, value: true%>
+        <%= f.submit "Accepter la demande", class: "btn btn-primary" %>
+        <% end %>
         <% end %>
       </div>
     </div>
-  </div><!--Fin row-->
-
-  <div class="row"><!--Debut row-->
-    <div class="padded">
-      <div class="col-sm-12">
-        <h2 class="text-center">Ses demandes</h2>
-        <% @lendings.each do |lending| %>
-         <div class="card-book">
-            <div class="col-xs-12 col-sm-4">
-
-               <div class="card-image" style="background-image:url('<%= image_url lending.offer.book.image %>')"></div>
-
-               <div class="card">
-                <h2><%= lending.offer.book.title %></h2>
-                <p><%= lending.offer.book.category %></p>
-                <h4><%= lending.offer.book.author %></h4>
-
-               </div>
-
-              <% if lending.accepted? %>
-                <p>Demande en cours</p>
-              <% else %>
-                <%= simple_form_for [lending.offer, lending] do |f| %>
-                  <%= f.hidden_field :accepted, value: true%>
-                  <%= f.submit "Accepter la demande", class: "btn btn-primary" %>
-                <% end %>
-              <% end %>
-             </div>
-           </div>
-        <% end %>
-      </div>
-    </div>
-  </div><!--Fin row-->
+    <% end %>
+  </div>
+</div>
+</div><!--Fin row-->
 
 
 

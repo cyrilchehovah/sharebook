@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109143020) do
+ActiveRecord::Schema.define(version: 20151111094503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,8 +34,12 @@ ActiveRecord::Schema.define(version: 20151109143020) do
     t.text     "description"
     t.string   "category"
     t.string   "author"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.string   "image"
   end
 
@@ -45,6 +49,8 @@ ActiveRecord::Schema.define(version: 20151109143020) do
     t.integer  "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "author"
+    t.datetime "read_at"
   end
 
   add_index "messages", ["booking_id"], name: "index_messages_on_booking_id", using: :btree
@@ -79,7 +85,7 @@ ActiveRecord::Schema.define(version: 20151109143020) do
     t.string   "address2"
     t.string   "provider"
     t.string   "uid"
-    t.string   "picture"
+    t.string   "profil_img"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "token"

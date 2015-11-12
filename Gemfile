@@ -12,6 +12,9 @@ gem "autoprefixer-rails"
 # Devise : sign up / sign in
 gem 'devise'
 
+# I18N Translation
+gem 'devise-i18n'
+
 # Facebook-connect
 gem 'omniauth-facebook'
 

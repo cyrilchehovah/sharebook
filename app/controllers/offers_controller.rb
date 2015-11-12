@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
-  before_action :set_book, only: [:create, :show]
-  before_action :set_user, only: [:create, :create_book_and_offer, :new]
+  before_action :set_book, only: [:create, :update, :show]
+  before_action :set_user, only: [:create, :create_book_and_offer, :new, :destroy]
 
   def index
     @offers = Offer.all
@@ -43,6 +43,12 @@ class OffersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @offer = Offer.find(params[:id])
+    @offer.destroy
+    redirect_to user_path(@user)
   end
 
   private
