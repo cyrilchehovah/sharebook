@@ -3,6 +3,7 @@ class Booking < ActiveRecord::Base
   belongs_to :user
 
   has_many :messages, dependent: :destroy
+  has_many :owner_to_reader_reviews, dependent: :destroy
   validates_inclusion_of :accepted, :in => [true, false]
   validates :offer, presence: true
   validates :user, presence: true
