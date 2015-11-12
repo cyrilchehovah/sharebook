@@ -13,17 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20151112110121) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "offer_id"
-    t.boolean  "accepted",   default: false
     t.date     "starts_on"
     t.date     "ends_on"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "state",      default: "pending"
   end
 
   add_index "bookings", ["offer_id"], name: "index_bookings_on_offer_id", using: :btree
@@ -34,12 +35,8 @@ ActiveRecord::Schema.define(version: 20151112110121) do
     t.text     "description"
     t.string   "category"
     t.string   "author"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "image"
   end
 
@@ -49,7 +46,6 @@ ActiveRecord::Schema.define(version: 20151112110121) do
     t.integer  "booking_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "author"
     t.datetime "read_at"
   end
 
@@ -59,9 +55,9 @@ ActiveRecord::Schema.define(version: 20151112110121) do
   create_table "offers", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "user_id"
-    t.boolean  "published"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "published",  default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "offers", ["book_id"], name: "index_offers_on_book_id", using: :btree
