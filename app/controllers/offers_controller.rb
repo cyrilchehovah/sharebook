@@ -36,7 +36,7 @@ class OffersController < ApplicationController
 
       if @offer.valid?
         @offer.save
-        redirect_to books_path()
+        redirect_to book_path(@book)
       else
         render :new
       end
@@ -49,7 +49,7 @@ class OffersController < ApplicationController
 
       if @offer.valid?
         @offer.save
-        redirect_to books_path()
+        redirect_to book_path(@book)
       else
         render :new
       end

@@ -9,9 +9,9 @@
 <h1 class="text-center">New offer</h1>
 <div class="container">
   <div class="row">
-    <input type="text" id="q">
+    <input type="text" id="book-title">
   </div>
-  <div id="results">
+  <div id="results" class="row">
   </div>
 </div>
 
@@ -24,31 +24,57 @@
 
 <%= content_for :after_js do %>
   <%= javascript_tag do %>
+    // <script>
     $(document).ready(function() {
-      $('#q').on('keyup', function() {
+
+      $('body').on('click', ".card-container", function() {
+        // On récupère le "data-book", on remet les caractères spéciaux, et on transforme la string en un hash javascript
+        var data = JSON.parse(unescape($(this).data("book")));
+
+        // Vis ta vis de vinaigrette
+        $('#book_title').val(data.title);
+        $('#book_description').val(data.description);
+        setTimeout(function() {
+         $('#new_book').submit();
+        }, 500);
+      });
+
+      $('#book-title').on('keyup', function() {
+        $('#results').html('<div class="spinner-loader">Loading…</div>');
+
         $.ajax({
           type: "GET",
-          url: "https://www.googleapis.com/books/v1/volumes?q=" + $('#q').val() + "&key=" + '<%= ENV["GOOGLE_API_KEY"] %>',
+          url: "https://www.googleapis.com/books/v1/volumes?q=" + $(this).val() + "&key=" + '<%= ENV["GOOGLE_API_KEY"] %>',
           success: function(data) {
             $('#results').html('');
-            console.log(data);
-            for(i=0;i<data.items.length;i++) {
-              $('#results').append(
-                '<div class="card-book" id=result_' + i + '>' +
-                  '<div class="col-xs-12 col-sm-4">' +
-                    '<div class="card-image" style=background-image:url("' +
-"http://placehold.it/350x150"
-                      +
-                    '")></div>' +
-                    '<div class="card">' +
-                      '<h2>' +
-                        data.items[i]["volumeInfo"]["title"] +
-                      '</h2>' +
-                      '<p>' +
-                        data.items[i]["volumeInfo"]["subtitle"] +
-                      '</p>' +
 
-                    '</div>' +
+            for( i = 0; i < data.items.length; i++) {
+              // On récupère toutes les infos et on en fait un beau hash
+              var bookInfo = {
+                title: data.items[i].volumeInfo.title,
+                subtitle: data.items[i].volumeInfo.subtitle,
+                description: data.items[i].volumeInfo.description,
+                // Si il n'y a pas d'image on utilise un placeholder
+                image: (data.items[i].volumeInfo.imageLinks) ? data.items[i].volumeInfo.imageLinks.thumbnail : "http://placehold.it/350x150",
+                // Si il n'y a pas d'auteur une string vide
+                author: (data.items[i].volumeInfo.authors) ? data.items[i].volumeInfo.authors[0] : ""
+              }
+
+
+              // On prend notre beau hash et on échappe les caractères spéciaux (""), on le transforme en string et on
+              // le met dans notre HTML dans un attribut "data-book"
+              $('#results').append(
+                '<div class="col-xs-12 col-sm-4 col-md-4 card-container" data-book="' + escape(JSON.stringify(bookInfo)) + '" id="result_' + i + '">' +
+                  '<div class="card-image" style=background-image:url("' +
+                  bookInfo.image +
+                  '")></div>' +
+                  '<div class="card">' +
+                    '<h2>' +
+                      bookInfo.title +
+                    '</h2>' +
+                    '<p>' +
+                      bookInfo.subtitle +
+                    '</p>' +
                   '</div>' +
                 '</div>'
               )
@@ -58,21 +84,6 @@
             console.log('Some error occurred');
           }
         });
-      });
-      $('.card-image').on('click', function() {
-        $ajax({
-          type: "POST",
-          url: "book_offer",
-          success: function(data) {
-          var index = $(this).parent().parent().attr('id').slice($(this).parent().parent().attr('id').lastIndexOf('_') + 1)
-          console.log(data.items[index]);
-          $('#book_title').val(data.items[index]["volumeInfo"]["title"]);
-          $('#book_description').val(data.items[index]["volumeInfo"]["description"]);
-          setTimeout(function() {
-            $('#new_book').submit();
-          }, 500);
-        }
-      })
       });
     });
   <% end %>
