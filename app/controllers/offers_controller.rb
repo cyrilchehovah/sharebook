@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_book, only: [:create, :show]
-  before_action :set_user, only: [:create, :new]
+  before_action :set_user, only: [:create, :create_book_and_offer, :new]
 
   def index
     @offers = Offer.all
@@ -28,9 +28,10 @@ class OffersController < ApplicationController
   def create_book_and_offer
     @book = Book.find_by(title: params[:book][:title])
 
-    if @book == Book.where(title: @book.title)
-      # créer une offer sur le book existant
-      @offer = @book.offers.new(params_offer)
+    if @book == nil
+      # créer le book, puis l'offer
+      @book = Book.new(params_book)
+      @offer = @book.offers.new
       @offer.book = @book
       @offer.user = @user
 
@@ -41,9 +42,8 @@ class OffersController < ApplicationController
         render :new
       end
     else
-      # créer le book, puis l'offer
-      @book = Book.new(params_book)
-      @offer = @book.offers.new(params_offer)
+      # créer une offer sur le book existant
+      @offer = @book.offers.new
       @offer.book = @book
       @offer.user = @user
 

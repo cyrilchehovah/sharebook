@@ -1,0 +1,14 @@
+#results {
+  position:relative;
+  z-index: -1;
+  padding: 10px;
+  margin-top: -37px;
+  border-radius: 7px;
+  border: 1px solid #CCCCCC;
+  background: white;
+}
+
+#results h3 {
+  font-size: 16px;
+  color: $brand-primary;
+}
