@@ -35,6 +35,16 @@ class BookingsController < ApplicationController
     # update booking
     @booking = Booking.find(params[:id])
     @booking.update(params_booking)
+    @owner = @booking.offer.user
+
+    if @booking.state == "accepted"
+      @booking.offer.published = false
+      @booking.offer.save
+    elsif @booking.state == "ended"
+      @booking.offer.published = true
+      @booking.offer.save
+    end
+
 
     respond_to do |format|
       format.html{redirect_to booking_path(@booking)}
@@ -44,7 +54,7 @@ class BookingsController < ApplicationController
 
   private
   def params_booking
-    params.require(:booking).permit(:accepted)
+    params.require(:booking).permit(:state)
   end
 
 end

@@ -35,8 +35,13 @@
               <div class="col-md-10">
                 <h2 class="mb10 mt0"><%= offer.user.first_name%> <%= offer.user.last_name%></h2>
                 <h4><%= link_to 'voir son profil', user_path(offer.user)%></h4>
-                <%= simple_form_for [offer, @booking] do |f| %>
-                  <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
+                <% if offer.published? %>
+                  <%= simple_form_for [offer, @booking] do |f| %>
+                    <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
+                  <% end %>
+
+                <% else %>
+                  <p>Le livre de ce prêteur est en cours de prêt</p>
                 <% end %>
               </div>
             </div>
