@@ -1,22 +1,17 @@
 .card {
   position: relative;
-  /*border: 1px solid $gray-lighter;*/
+  border: 1px solid $gray-lighter;
   margin: 1em auto;
   padding: 2em;
-  /*border-radius:$border-radius-base;*/
+  border-radius:$border-radius-base;
   h2 {
-   margin-bottom:25px;
-  }
-  h4 span{
-   border-top: 1px solid $gray-lighter;
-   padding-top: 5px;
+   margin-bottom:15px;
   }
   .card-footer {
-/*  position:absolute;*/
+    position:absolute;
     bottom: 5px;
   }
 }
-
 .card-testimonial{
   margin: 0.7em 0.7em 1.5em 0.7em;
   border-top: 3px solid $green;
@@ -28,9 +23,7 @@
   position: relative;
   background-size: cover;
   background-position: center center;
-  width: 79%;
   height:344px;
-  margin: 0 auto;
   margin-bottom:25px;
   h2 {
     color: #fff;
