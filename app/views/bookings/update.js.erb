@@ -1,2 +1,3 @@
 $('#messages-buttons').html('<%= j render "buttons" %>');
+$('#message-content').append('<%= j render "messages/message", message: @message %>');
 

@@ -42,10 +42,11 @@
 
 <h2><%= @booking.offer.book.title%></h2>
 <div id="message-content">
+
+
+
   <% @messages.each do |message| %>
-    <p><%= message.content %></p>
-    <h4><%= message.user.first_name %> - <%= message.created_at.strftime("%d %b. %Y") %> - <%= message.created_at.strftime("%H:%M") %></h4>
-    <hr>
+    <%= render 'messages/message', message: message %>
   <% end %>
 </div>
 
