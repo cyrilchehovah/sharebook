@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index, :show, :update] do
     resources :messages, only: [:create]
-    resources :owner_to_reader_reviews, only:[:new, :create]
+    # resources :owner_to_reader_reviews, only:[:new, :create]
   end
 
   post 'book_offer', to: 'offers#create_book_and_offer', as: 'book_offer'
