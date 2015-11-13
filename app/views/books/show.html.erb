@@ -30,7 +30,7 @@
           <% @offers.each do |offer|%>
             <div class="row">
               <div class="col-md-2">
-                <%= image_tag offer.user.picture, class:'avatar avatar-large' %>
+               <%= image_tag (offer.user.profil_img ? offer.user.profil_img : offer.user.picture.url(:thumb)), class:'avatar avatar-large' %>
               </div>
               <div class="col-md-10">
                 <h2 class="mb10 mt0"><%= offer.user.first_name%> <%= offer.user.last_name%></h2>
