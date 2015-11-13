@@ -14,12 +14,8 @@ class RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:email, :address1, :address2, :picture, :first_name, :last_name, :description)
   end
 
-  def after_update_path_for(resource)
-    user.show_path(resource)
-  end
-
   def after_sign_up_path_for(resource)
-    user.edit_path(resource)
+     edit_user_registration_path(resource)
   end
 
 end
