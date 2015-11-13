@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # Algolia search
 gem 'algoliasearch-rails'
 
+#parsing on Amazon
+gem 'amazon-ecs'
+
 # Front-end
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-sass', '~> 4.2.0'
