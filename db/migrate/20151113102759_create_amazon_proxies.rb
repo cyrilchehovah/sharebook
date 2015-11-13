@@ -1,0 +1,8 @@
+class CreateAmazonProxies < ActiveRecord::Migration
+  def change
+    create_table :amazon_proxies do |t|
+
+      t.timestamps null: false
+    end
+  end
+end
