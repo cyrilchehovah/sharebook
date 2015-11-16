@@ -8,7 +8,12 @@
 
       <div class="col-md-8">
         <h1 class="mt0"><%= @book.title %></h1>
+        <h3> <%= @book.subtitle %> </h3>
+        <h3> <%= @book.publisher %> </h3>
+        <h3> <%= @book.isbn_10 %> </h3>
+        <h3> <%= @book.pages_number %> </h3>
         <h2><%= @book.category %> - <%= @book.author %></h2>
+
         <p><%= @book.description %></p>
       </div>
     </div>
