@@ -13,4 +13,12 @@ class Book < ActiveRecord::Base
       self.save
     end
   end
+
+  include AlgoliaSearch
+
+    algoliasearch do
+      attribute :title, :author
+    end
+
+
 end
