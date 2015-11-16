@@ -2,9 +2,10 @@
 // -----------------------------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------------------------
+
 var fill_and_submit_book_form = function() {
       // On récupère le "data-book", on remet les caractères spéciaux, et on transforme la string en un hash javascript
-      var data = JSON.parse(unescape($(this).data("book")));
+      var data = JSON.parse(unescape($(".card-container").data("book")));
 
       // Vis ta vis de vinaigrette
       $('#book_title'      ).val(data.title);
@@ -57,7 +58,7 @@ var fill_and_submit_book_form = function() {
     // le met dans notre HTML dans un attribut "data-book"
     // Pour chaque résultat on crée le HTML et on le place sans l'élément #results
     $('#results').append(
-      '<div class="card-container" data-book="' + escape(JSON.stringify(bookInfo)) + '" id="result_' + i + '">' +
+      '<div class="card-container" data-toggle="modal" data-target="#myModal" data-book="' + escape(JSON.stringify(bookInfo)) + '" id="result_' + i + '">' +
       '<hr>' +
       '<div class="row">' +
       '<div class ="col-xs-offset-1 col-xs-2">' +
@@ -73,9 +74,32 @@ var fill_and_submit_book_form = function() {
       '</div>' +
       '</div>'
       )
+
+    var open_modal = function() {
+      // Premièrement : effacement du HTML
+      $('.modal-body').html(
+        '<div class="card-container" data-toggle="modal" data-target="#myModal" data-book="' + escape(JSON.stringify(bookInfo)) + '" id="result_' + i + '">' +
+        '<div class="row">' +
+        '<div class ="col-xs-offset-1 col-xs-2">' +
+        '<img src="' + bookInfo.image + '" alt="book-cover" class="result-img img-responsive">' +
+        '</div>' +
+        '<div class ="col-xs-9 result-infos">' +
+        '<h3>' +
+        bookInfo.title +
+        '</h3>' +
+        '<h4>' +
+        bookInfo.author +
+        '</h4>' +
+        '</div>' +
+        '</div>'
+        )
+};
+
   }
 
-  $(".card-container").on('click', fill_and_submit_book_form);
+  $(".card-container").on('click', open_modal);
+
+  $("#submit_book_form").on('click', fill_and_submit_book_form);
 }
 
 

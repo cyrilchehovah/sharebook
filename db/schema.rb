@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113143631) do
-
+ActiveRecord::Schema.define(version: 20151116151025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,13 +39,8 @@ ActiveRecord::Schema.define(version: 20151113143631) do
     t.text     "description"
     t.string   "category"
     t.string   "author"
-<<<<<<< HEAD
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-=======
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
->>>>>>> master
     t.string   "image"
     t.string   "publisher"
     t.integer  "pages_number"
@@ -60,17 +54,6 @@ ActiveRecord::Schema.define(version: 20151113143631) do
     t.integer  "booking_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-<<<<<<< HEAD
-=======
-=======
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-<<<<<<< HEAD
-=======
-    t.string   "author"
->>>>>>> master
->>>>>>> master
->>>>>>> master
     t.datetime "read_at"
     t.boolean  "auto_generated", default: false
   end
