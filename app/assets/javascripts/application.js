@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require algolia/v3/algoliasearch.min
 //= require algolia/typeahead.jquery
+//= require hogan.js
 
 //= require_tree .
 

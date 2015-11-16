@@ -1,7 +1,17 @@
 class Book < ActiveRecord::Base
+
   has_many :offers
 
   after_create :fetch_amazon_fields
+
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :title, :author
+  end
+
+  Book.reindex!
+
 
   def fetch_amazon_fields
     item = Amazon::Ecs.item_lookup(self.isbn_10, { :response_group => 'Large' }).items.first
@@ -14,11 +24,6 @@ class Book < ActiveRecord::Base
     end
   end
 
-  include AlgoliaSearch
-
-    algoliasearch do
-      attribute :title, :author
-    end
 
 
 end

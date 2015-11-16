@@ -21,14 +21,31 @@
 
       <form>
         <div class="input-group">
-          <input id="search_field" type="text" class="form-control input-lg" placeholder="HTML5 pour les web designers">
+          <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" class="form-control input-lg" placeholder="HTML5 pour les web designers">
           <span class="input-group-btn">
             <button class="btn btn-primary btn-lg" type="button"><i class="fa fa-search"></i></button>
           </span>
         </div><!-- /input-group -->
+
       </form>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <main>
+    <!-- Left Column -->
+    <div id="left-column">
+      <div id="facets"></div>
+    </div>
+
+    <!-- Right Column -->
+    <div id="right-column">
+      <div id="stats"></div>
+      <div id="hits"></div>
+      <div id="pagination"></div>
+    </div>
+  </main>
 </div>
 
 <div class="container">
@@ -54,8 +71,32 @@
 </div>
 
 <% content_for :after_js do %>
+
+
+
+  <script src="//cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
+
+
+
   <script type="text/javascript">
     $( initialize_algolia_search );
   </script>
+
+  <!-- Hit template -->
+  <script type="text/template" id="hit-template">
+    {{#hits}}
+    <div class="hit">
+      <div class="hit-image">
+        <img src="{{ image }}" alt="{{ name }}">
+      </div>
+      <div class="hit-content">
+        <h3 class="hit-title">{{ title }}</h3>
+        <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
+        <p class="hit-description">{{{ _highlightResult.description.value }}}</p>
+      </div>
+    </div>
+    {{/hits}}
+  </script>
+
 <% end %>
 
