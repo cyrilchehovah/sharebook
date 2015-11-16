@@ -1,40 +1,6 @@
 
 <div id="messages-buttons" class="forms-inline">
-  <% if current_user == @owner && @booking.state == "pending" %>
-    <%= simple_form_for @booking, :remote => true do |f| %>
-      <%= f.hidden_field :state, value: "accepted" %>
-      <%= f.submit "Accepter la demande", class: "btn btn-primary btn-group" %>
-    <% end %>
-
-    <%= simple_form_for @booking, :remote => true do |f| %>
-      <%= f.hidden_field :state, value: "canceled" %>
-      <%= f.submit "Refuser la demande", class: "btn btn-danger" %>
-    <% end %>
-
-    <% elsif current_user != @owner && @booking.state == "pending" %>
-      <h4>Votre demande est en attente de validation</h4>
-      <%= simple_form_for @booking, :remote => true do |f| %>
-        <%= f.hidden_field :state, value: "canceled" %>
-        <%= f.submit "Annuler la demande", class: "btn btn-danger" %>
-      <% end %>
-
-    <% elsif current_user == @owner && @booking.state == "accepted" %>
-        <%= simple_form_for @booking, :remote => true do |f| %>
-          <%= f.hidden_field :state, value: "ended" %>
-          <%= f.submit "Valider le retour de mon livre", class: "btn btn-primary" %>
-        <% end %>
-        <h4>Le prêt est en cours - pour récupérer votre livre, contactez <%= @booking.user.first_name %></h4>
-
-    <% elsif current_user != @owner && @booking.state == "accepted" %>
-        <h4>Le prêt est en cours - pour rendre le livre, contactez <%= @booking.offer.user.first_name %></h4>
-
-    <% elsif current_user != @owner && @booking.state == "accepted" %>
-        <h4>Le prêt est en cours - pour rendre le livre, contactez le propriétaire</h4>
-
-    <% else %>
-      <h4>La demande a été annulée</h4>
-
-  <% end %>
+  <%= render 'buttons' %>
 </div>
 <hr>
 

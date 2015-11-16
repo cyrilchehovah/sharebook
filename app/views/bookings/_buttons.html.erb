@@ -24,10 +24,13 @@
       <h4>Le prêt est en cours - pour récupérer votre livre, contactez <%= @booking.user.first_name %></h4>
 
   <% elsif current_user != @owner && @booking.state == "accepted" %>
-      <h4>Le prêt est en cours - pour rendre le livre, contactez le propriétaire</h4>
+      <h4>Le prêt est en cours - pour rendre le livre, contactez <%= @booking.offer.user.first_name %></h4>
 
   <% elsif current_user != @owner && @booking.state == "accepted" %>
       <h4>Le prêt est en cours - pour rendre le livre, contactez le propriétaire</h4>
+
+  <% elsif @booking.state == "ended" %>
+    <h4>La demande est terminée</h4>
 
   <% else %>
     <h4>La demande a été annulée</h4>

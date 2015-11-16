@@ -1,8 +1,8 @@
 class BookingsController < ApplicationController
 
   def index
-    @borrow_bookings = Booking.where(user: current_user)
-    @lend_bookings = Booking.where(offer: current_user.offers)
+    @borrow_bookings = Booking.where(user: current_user).order(:created_at).reverse_order
+    @lend_bookings = Booking.where(offer: current_user.offers).order(:created_at).reverse_order
   end
 
   def show
