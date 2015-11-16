@@ -1,0 +1,60 @@
+/* Books */
+
+.container.hide-overflow { overflow: hidden }
+
+.bookshelf {
+    position: relative;
+    margin: 40px auto 0;
+    list-style: none;
+}
+/*
+.bookshelf figure {
+    position: relative;
+    display: inline-block;
+    margin: auto 0;
+    padding: 45px 0;
+    max-width: 75%;
+    width: 250px;
+    vertical-align: top;
+}*/
+
+/* Figure and book */
+
+.book {
+    position: relative;
+    z-index: -1;
+}
+
+.image-container {
+  position: relative;
+}
+
+.filter {
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%);
+  bottom: 0;
+  display: block;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.bookshelf figcaption p span {
+    position: relative;
+    display: block;
+    margin: 1em 0 1em 0;
+    padding: .5em 0 0 0;
+}
+
+.bookshelf figcaption p span::before {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 20%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    content: '';
+}
