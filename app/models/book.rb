@@ -10,4 +10,12 @@ class Book < ActiveRecord::Base
     self.pages_number = item.get('ItemAttributes/NumberOfPages')
     # self.isbn item.get('ItemAttributes/ISBN')
   end
+
+  include AlgoliaSearch
+
+    algoliasearch do
+      attribute :title, :author
+    end
+
+
 end
