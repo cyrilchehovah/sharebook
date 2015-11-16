@@ -1,5 +1,5 @@
 <div class="text-center">
-  <%= image_tag object.user.picture, class: 'avatar avatar-large' %>
+  <%= image_tag (object.user.profil_img ? object.user.profil_img : object.user.picture.url(:thumb)), class: 'avatar avatar-large' %>
 
   <p><%= object.user.first_name%> <%= object.user.last_name%></p>
   <%= link_to 'voir son profil', user_path(object.user), class: 'btn btn-primary'%>
