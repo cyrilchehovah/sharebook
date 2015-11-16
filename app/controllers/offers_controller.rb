@@ -8,7 +8,7 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @book = Book.new
+    @book  = Book.new
   end
 
 
@@ -34,9 +34,9 @@ class OffersController < ApplicationController
       # @book.sync_with_amazon
     end
 
-    @offer = @book.offers.new
+    @offer      = @book.offers.new
+    @offer.user = current_user
     @offer.book = @book
-    @offer.user = @user
 
     if @offer.save
       redirect_to book_path(@book)
@@ -64,7 +64,7 @@ class OffersController < ApplicationController
   end
 
   def params_book
-    params.require(:book).permit(:title, :description, :category, :author, :image)
+    params.require(:book).permit(:title, :description, :category, :author, :image, :publisher, :pages_number, :subtitle, :isbn_10)
   end
 
 end
