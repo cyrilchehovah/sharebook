@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20151113143631) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "amazon_proxies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
@@ -34,8 +41,12 @@ ActiveRecord::Schema.define(version: 20151113143631) do
     t.text     "description"
     t.string   "category"
     t.string   "author"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.string   "image"
   end
 
@@ -43,8 +54,14 @@ ActiveRecord::Schema.define(version: 20151113143631) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "booking_id"
+<<<<<<< HEAD
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "author"
+>>>>>>> master
     t.datetime "read_at"
     t.boolean  "auto_generated", default: false
   end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get 'users/edit', :to => 'devise/registrations#edit', :as => :user_root
     end
 
+
   resources :users, only: [:show]
 
   resources :offers, only: [:index, :new, :create, :update]do
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:index, :show, :update] do
     resources :messages, only: [:create]
-    resources :owner_to_reader_reviews, only:[:new, :create]
+    # resources :owner_to_reader_reviews, only:[:new, :create]
   end
 
   post 'book_offer', to: 'offers#create_book_and_offer', as: 'book_offer'
