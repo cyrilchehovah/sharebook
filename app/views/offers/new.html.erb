@@ -32,6 +32,7 @@
 
 <%= content_for :after_js do %>
   <%= javascript_tag do %>
+    global_google_api_key = "<%= ENV["GOOGLE_API_KEY"] %>";
     $( function(){ $('#book-title').on('keyup', search_book);} );
   <% end %>
 <% end %>

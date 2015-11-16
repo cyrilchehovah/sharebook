@@ -1,5 +1,7 @@
 
-
+// -----------------------------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------------------------
 var fill_and_submit_book_form = function() {
       // On récupère le "data-book", on remet les caractères spéciaux, et on transforme la string en un hash javascript
       var data = JSON.parse(unescape($(this).data("book")));
@@ -77,7 +79,9 @@ var fill_and_submit_book_form = function() {
 }
 
 
-
+// -----------------------------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------------------------
 var search_book = function() {
   // Je stocke la chaine de recherche entrée par l'utilisateur.
   var search_string = $("#book-title").val();
@@ -92,7 +96,7 @@ var search_book = function() {
 
   $.ajax({
     type: "GET",
-    url: "https://www.googleapis.com/books/v1/volumes?q=" + $(this).val() + "&key=" + '<%= ENV["GOOGLE_API_KEY"] %>',
+    url: "https://www.googleapis.com/books/v1/volumes?q=" + $(this).val() + "&key=" + global_google_api_key,
     success: create_book_result_list,
     error:   function(data) {
      console.log('Some error occurred');
