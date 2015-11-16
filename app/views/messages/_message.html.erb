@@ -1,0 +1,10 @@
+<% if message.auto_generated %>
+  <p class="auto_message"><%= message.content %> <br> <%= message.created_at.strftime("%d %b. %Y") %></p>
+
+<% else %>
+  <p><%= message.content %></p>
+  <h4><%= message.user.first_name %> - <%= message.created_at.strftime("%d %b. %Y") %> - <%= message.created_at.strftime("%H:%M") %></h4>
+  <hr>
+
+<% end %>
+

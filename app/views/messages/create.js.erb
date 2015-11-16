@@ -1,1 +1,1 @@
-$('#message-content').append('<%= j render "new_message" %>');
+$('#message-content').append('<%= j render "message", message: @message %>');

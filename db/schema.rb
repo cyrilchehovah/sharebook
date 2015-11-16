@@ -52,9 +52,19 @@ ActiveRecord::Schema.define(version: 20151116151025) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "booking_id"
+<<<<<<< HEAD
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+=======
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+=======
+    t.string   "author"
+>>>>>>> master
+>>>>>>> master
     t.datetime "read_at"
+    t.boolean  "auto_generated", default: false
   end
 
   add_index "messages", ["booking_id"], name: "index_messages_on_booking_id", using: :btree
