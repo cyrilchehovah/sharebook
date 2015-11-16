@@ -19,9 +19,12 @@
 
 <%= form_for(@book, url: book_offer_path) do |f| %>
   <%= f.text_field :title, class: "hidden" %>
+  <%= f.text_field :subtitle, class: "hidden" %>
   <%= f.text_field :description, class: "hidden" %>
   <%= f.text_field :image, class: "hidden" %>
   <%= f.text_field :author, class: "hidden" %>
+  <%= f.text_field :publisher, class: "hidden" %>
+  <%= f.text_field :isbn, class: "hidden" %>
 <% end %>
 
 <%= content_for :after_js do %>
@@ -35,9 +38,12 @@
 
         // Vis ta vis de vinaigrette
         $('#book_title').val(data.title);
+        $('#book_subtitle').val(data.subtitle);
         $('#book_description').val(data.description);
         $('#book_image').val(data.image);
         $('#book_author').val(data.author);
+        $('#book_publisher').val(data.publisher);
+        $('#book_isbn').val(data.isbn);
         setTimeout(function() {
          $('#new_book').submit();
         }, 500);
@@ -66,7 +72,9 @@
                   // Si il n'y a pas d'image on utilise un placeholder
                   image: (data.items[i].volumeInfo.imageLinks) ? data.items[i].volumeInfo.imageLinks.thumbnail : "http://placehold.it/350x150",
                   // Si il n'y a pas d'auteur une string vide
-                  author: (data.items[i].volumeInfo.authors) ? data.items[i].volumeInfo.authors[0] : ""
+                  author: (data.items[i].volumeInfo.authors) ? data.items[i].volumeInfo.authors[0] : "",
+                  publisher: (data.items[i].volumeInfo.publisher) ? data.items[i].volumeInfo.publisher[0] : "",
+                  isbn: data.items[i].volumeInfo.industryIdentifiers.[2].identifier,
                 }
 
 
