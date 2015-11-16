@@ -2,21 +2,44 @@
   <div class="padded">
     <div class="row">
       <div class="col-md-3">
-        <h4>Mes demandes</h4>
-        <% @borrow_bookings.each do |booking| %>
-          <h2><%= booking.offer.book.title%></h2>
-          <p><%= booking.offer.user.first_name %> - <span class="badge"><%= booking.state %></span></p>
-          <%= link_to 'voir le message', booking_path(booking), remote: :true %> <br>
-          <hr>
-        <% end %>
+        <h4 class="green">Mes demandes</h4>
+        <ul class="list-unstyled">
+          <% @borrow_bookings.each do |borrow| %>
+              <%= link_to booking_path(borrow), class: "see_message_link", remote: :true do %>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <%= image_tag(borrow.user.picture, class: "img-responsive img-circle") %>
+                  </div>
+                  <div class="col-xs-9">
+                    <h4><%= borrow.offer.book.title%></h4>
+                    <h4><%= borrow.user.first_name%> - <span class="green"><%= borrow.state %></span></h4>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+            <hr>
+          <% end %>
+        </ul>
 
-        <h4>Mes emprunts</h4>
-        <% @lend_bookings.each do |lending| %>
-          <h2><%= lending.offer.book.title%></h2>
-          <p><%= lending.user.first_name%> - <span class="badge"><%= lending.state %></span></p>
-          <%= link_to 'voir le message', booking_path(lending), remote: :true %> <br>
-          <hr>
-        <% end %>
+        <h4 class="green">Mes emprunts</h4>
+        <ul class="list-unstyled">
+          <% @lend_bookings.each do |lending| %>
+              <%= link_to booking_path(lending), class: "see_message_link", remote: :true do %>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <%= image_tag(lending.user.picture, class: "img-responsive img-circle") %>
+                  </div>
+                  <div class="col-xs-9">
+                    <h4><%= lending.offer.book.title%></h4>
+                    <h4><%= lending.user.first_name%> - <span class="green"><%= lending.state %></span></h4>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+            <hr>
+          <% end %>
+        </ul>
+
       </div>
 
       <div class="col-md-9" id="messages">
@@ -24,3 +47,11 @@
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    var click_on_first_message = function (){ $(".see_message_link").first().click(); };
+
+    $( click_on_first_message );
+  </script>
+<% end %>

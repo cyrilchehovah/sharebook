@@ -6,6 +6,7 @@
   <% end %>
 <% end %>
 
+<!-- Champ de recherche du livre. La recherche est lancée à chaque event keyUp -->
 <h1 class="text-center">Ajouter un livre</h1>
 <div class="container page-height">
   <div class="row">
@@ -17,86 +18,21 @@
   </div>
 </div>
 
+<!-- Lors du click sur un résultat de recherche, ce formulaire (caché) est remplis puis il est soumis
+     vers l'action create de la ressource offer. -->
 <%= form_for(@book, url: book_offer_path) do |f| %>
   <%= f.text_field :title, class: "hidden" %>
+  <%= f.text_field :subtitle, class: "hidden" %>
   <%= f.text_field :description, class: "hidden" %>
   <%= f.text_field :image, class: "hidden" %>
   <%= f.text_field :author, class: "hidden" %>
+  <%= f.text_field :publisher, class: "hidden" %>
+  <%= f.text_field :isbn_10, class: "hidden" %>
 <% end %>
 
 <%= content_for :after_js do %>
   <%= javascript_tag do %>
-    // <script>
-    $(document).ready(function() {
-
-      $('body').on('click', ".card-container", function() {
-        // On récupère le "data-book", on remet les caractères spéciaux, et on transforme la string en un hash javascript
-        var data = JSON.parse(unescape($(this).data("book")));
-
-        // Vis ta vis de vinaigrette
-        $('#book_title').val(data.title);
-        $('#book_description').val(data.description);
-        $('#book_image').val(data.image);
-        $('#book_author').val(data.author);
-        setTimeout(function() {
-         $('#new_book').submit();
-        }, 500);
-      });
-
-      $('#book-title').on('keyup', function() {
-        if ($(this).val().length == 0) {
-          $('#results').html('');
-        }
-        else{
-          $.ajax({
-            type: "GET",
-            url: "https://www.googleapis.com/books/v1/volumes?q=" + $(this).val() + "&key=" + '<%= ENV["GOOGLE_API_KEY"] %>',
-            success: function(data) {
-              $('#results').html('');
-
-              for( i = 0; i < data.items.length; i++) {
-                // On récupère toutes les infos et on en fait un beau hash
-
-                console.log(data.items[i].volumeInfo.imageLinks);
-
-                var bookInfo = {
-                  title: data.items[i].volumeInfo.title,
-                  subtitle: data.items[i].volumeInfo.subtitle,
-                  description: data.items[i].volumeInfo.description,
-                  // Si il n'y a pas d'image on utilise un placeholder
-                  image: (data.items[i].volumeInfo.imageLinks) ? data.items[i].volumeInfo.imageLinks.thumbnail : "http://placehold.it/350x150",
-                  // Si il n'y a pas d'auteur une string vide
-                  author: (data.items[i].volumeInfo.authors) ? data.items[i].volumeInfo.authors[0] : ""
-                }
-
-
-                // On prend notre beau hash et on échappe les caractères spéciaux (""), on le transforme en string et on
-                // le met dans notre HTML dans un attribut "data-book"
-                $('#results').append(
-                  '<div class="card-container" data-book="' + escape(JSON.stringify(bookInfo)) + '" id="result_' + i + '">' +
-                    '<hr>' +
-                    '<div class="row">' +
-                      '<div class ="col-xs-offset-1 col-xs-2">' +
-                        '<img src="' + bookInfo.image + '" alt="book-cover" class="result-img img-responsive">' +
-                      '</div>' +
-                      '<div class ="col-xs-9 result-infos">' +
-                        '<h3>' +
-                          bookInfo.title +
-                        '</h3>' +
-                        '<h4>' +
-                          bookInfo.author +
-                        '</h4>' +
-                      '</div>' +
-                    '</div>'
-                )
-              }
-            },
-            error: function(data) {
-              console.log('Some error occurred');
-            }
-          });
-        }
-      });
-    });
+    global_google_api_key = "<%= ENV["GOOGLE_API_KEY"] %>";
+    $( function(){ $('#book-title').on('keyup', search_book);} );
   <% end %>
 <% end %>

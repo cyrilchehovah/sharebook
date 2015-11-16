@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113102759) do
+ActiveRecord::Schema.define(version: 20151113143631) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,23 +40,39 @@ ActiveRecord::Schema.define(version: 20151113102759) do
     t.text     "description"
     t.string   "category"
     t.string   "author"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+<<<<<<< HEAD
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+=======
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+>>>>>>> master
     t.string   "image"
+    t.string   "publisher"
+    t.integer  "pages_number"
+    t.string   "subtitle"
+    t.string   "isbn_10"
   end
 
   create_table "messages", force: :cascade do |t|
     t.string   "content"
     t.integer  "user_id"
     t.integer  "booking_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+<<<<<<< HEAD
+=======
+=======
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+=======
     t.string   "author"
+>>>>>>> master
+>>>>>>> master
+>>>>>>> master
     t.datetime "read_at"
+    t.boolean  "auto_generated", default: false
   end
 
   add_index "messages", ["booking_id"], name: "index_messages_on_booking_id", using: :btree
