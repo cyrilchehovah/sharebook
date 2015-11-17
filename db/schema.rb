@@ -34,13 +34,17 @@ ActiveRecord::Schema.define(version: 20151116151025) do
   add_index "bookings", ["offer_id"], name: "index_bookings_on_offer_id", using: :btree
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
-  create_table "books", force: :cascade do |t|
+ create_table "books", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "category"
     t.string   "author"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.string   "image"
     t.string   "publisher"
     t.integer  "pages_number"
@@ -49,14 +53,15 @@ ActiveRecord::Schema.define(version: 20151116151025) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.integer  "booking_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.datetime "read_at"
-    t.boolean  "auto_generated", default: false
-  end
+     t.string   "content"
+     t.integer  "user_id"
+     t.integer  "booking_id"
+     t.datetime "created_at",                     null: false
+     t.datetime "updated_at",                     null: false
+     t.string   "author"
+     t.datetime "read_at"
+     t.boolean  "auto_generated", default: false
+   end
 
   add_index "messages", ["booking_id"], name: "index_messages_on_booking_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree

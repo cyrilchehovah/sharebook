@@ -25,33 +25,22 @@
   </div>
 </div>
 
-<div class="container">
-
-  <div class="row"><!--Debut row-->
-    <div class="padded">
-      <div class="col-sm-12">
-        <h2 class="text-center">Ses livres</h2>
+  <div class="container">
+    <div id="bookshelf" class="row bookshelf">
+      <h2 class="text-center">Ses livres</h2>
         <% @offers.each do |offer| %>
-         <div class="card-book">
-          <div class="col-xs-12 col-sm-4">
-             <%= link_to book_path(offer.book) do %>
-                <div class="card-image" style='background-image: url("<%= image_url offer.book.image %>")'></div>
-             <% end %>
-             <div class="card">
-               <h2 class="text-center"><%= offer.book.title %></h2>
-               <p class="text-center"><%= offer.book.category %></p>
-               <h4 class="text-center"><%= offer.book.author %></h4>
-               <h4 class="card-footer text-center"><i class="fa fa-map-marker fa-lg green"></i> <%= offer.book.offers.count%> prêteurs</h4>
-
-             </div>
-             <%= link_to( offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
-             <i class="fa fa-trash-o"></i>
-             <% end %>
+          <div class="col-xs-12 col-sm-3 block-book-user">
+            <%= link_to book_path(offer.book) do %>
+              <div class="image-container">
+                <%= image_tag(offer.book.image, class: "book img-responsive") %>
+              </div>
+            <% end %>
+                 <figcaption><h2 class="text-center"><%= offer.book.title %></h2>
+                 </figcaption>
+                   <%= link_to(offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
+                     <h4 class="text-center green"><i class="fa fa-trash-o fa-lg green"></i> Supprimer ce livre</h4>
+                  <% end %>
           </div>
-         </div>
         <% end %>
-      </div>
     </div>
-  </div><!--Fin row-->
-
-</div>
+  </div>

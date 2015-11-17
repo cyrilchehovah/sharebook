@@ -32,21 +32,19 @@
   </div>
 </div>
 
-<div class="container">
-  <main>
-    <!-- Left Column -->
-    <div id="left-column">
-      <div id="facets"></div>
-    </div>
+<div class="bookshelf">
+  <div class="container">
+    <div id="search-message" class="text-center"></div>
+    <!-- Hits -->
+    <div id="hits" class="row"></div>
+    <!-- /Hits -->
+  </div>
 
-    <!-- Right Column -->
-    <div id="right-column">
-      <div id="stats"></div>
-      <div id="hits"></div>
-      <div id="pagination"></div>
-    </div>
-  </main>
 </div>
+
+<!-- Pagination -->
+<div id="pagination"></div>
+
 
 
 <% content_for :after_js do %>
@@ -57,18 +55,20 @@
   <!-- Hit template -->
   <script type="text/template" id="hit-template">
     {{#hits}}
-    <div class="hit">
-      <div class="hit-image">
-        <img src="{{ image }}" alt="{{ name }}">
+    <div class="hit col-xs-12 col-sm-6 col-md-3 block-book">
+      <div class="hit-image image-container">
+        <a href="/books/{{ objectID }}"><img class="book img-responsive"src="{{ image }}" alt="{{ name }}"></a>
       </div>
       <div class="hit-content">
-        <h3 class="hit-title">{{ title }}</h3>
-        <h2 class="hit-author">{{{ _highlightResult.author.value }}}</h2>
-        <p class="hit-description">{{{ _highlightResult.description.value }}}</p>
+        <h2 class="hit-title text-center"><a href="/books/{{ objectID }}">{{ title }}</a></h2>
+        <p class="hit-author text-center"><span>{{{ _highlightResult.author.value }}}</span></p>
       </div>
     </div>
     {{/hits}}
   </script>
 
+
 <% end %>
+
+
 
