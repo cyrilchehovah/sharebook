@@ -14,23 +14,16 @@ class Book < ActiveRecord::Base
     attribute :title, :author, :image
 
 
-    add_attribute :users_addresses
+    add_attribute :_geoloc
 
     end
 
 
-
-      def users_addresses
-         self.offers.select { |offer| offer.valid? }.map do |offer|
-          { address1: offer.user.address1, attr: offer.user.address1 }
-          end
+    def _geoloc
+       self.offers.select { |offer| offer.valid? }.map do |offer|
+        { lat: offer.user.latitude, lng: offer.user.longitude }
         end
-
-      # def _geoloc
-      #   self.users.select { |user|  }.map do |user|
-      #     { lat_attr: user.latitude, lng_attr: user.longitude, attr: user.latitude, attr: user.longitude}
-      #   end
-      # end
+    end
 
 
 

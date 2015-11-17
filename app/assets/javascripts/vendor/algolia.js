@@ -1,20 +1,3 @@
-
-// function initialize_algolia_search() {
-//   var client = algoliasearch("LNZ38F4R3P", "44638aca0bf25d6a95b4fdeb148d36c7");
-//   var index  = client.initIndex('test_Books');
-
-
-//   function algolia_search() {
-//     index.search( $("#search-input").val() , function(success, hits) { console.log(success, hits) });
-
-//   }
-
-
-//   $("#search-input").on("keyup", algolia_search);
-
-// }
-
-
 function initialize_algolia_search() {
 
 // Replace with your own values
@@ -49,7 +32,6 @@ function initialize_algolia_search() {
   var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 
   // Input binding
-  // Input binding
   $searchInput
   .on('keyup', function() {
     var query = $(this).val();
@@ -77,6 +59,3 @@ function initialize_algolia_search() {
   }
 
 }
-
-
-

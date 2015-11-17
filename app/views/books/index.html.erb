@@ -42,53 +42,62 @@
     <!-- Right Column -->
     <div id="right-column">
       <div id="stats"></div>
-      <div id="hits"></div>
+      <div id="hits">
+      </div>
       <div id="pagination"></div>
     </div>
   </main>
 </div>
 
-<!--<div class="container">
-  <div id="bookshelf" class="row bookshelf">
-    <% @array.each do |book| %>
-      <div class="row">
-        <div class="col-xs-6 col-sm-3">
-          <%= link_to book_path(book) do %>
-          <div class="image-container">
-            <div class="filter"></div>
-            <%= image_tag(book.image, class: "book img-responsive") %>
-          </div>
-          <% end %>
-            <figcaption><h2 class="text-center"><%= book.title %></h2>
-            <p class="text-center"><span><%= book.author %></span></p></figcaption>
-            <h4 class="text-center"><i class="fa fa-map-marker fa-lg green"></i> <%= book.offers.count%> prêteurs</h4>
-        </div>
-      </div>
-    <% end %>
-
-  </div>
-</div>-->
 
 <% content_for :after_js do %>
-  <script src="//cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
-  <script type="text/javascript">
-    $( initialize_algolia_search );
-  </script>
-  <!-- Hit template -->
-  <script type="text/template" id="hit-template">
-    {{#hits}}
-    <div class="hit">
-      <div class="hit-image">
-        <img src="{{ image }}" alt="{{ name }}">
-      </div>
-      <div class="hit-content">
-        <h3 class="hit-title">{{ title }}</h3>
-        <h2 class="hit-author">{{{ _highlightResult.author.value }}}</h2>
-        <p class="hit-description">{{{ _highlightResult.description.value }}}</p>
-      </div>
-    </div>
-    {{/hits}}
-  </script>
+  <script>
+      var $input = $('input');
+      var $hits = $('#hits');
+
+
+      $(document).ready(function() {
+        var client = algoliasearch('LNZ38F4R3P', '44638aca0bf25d6a95b4fdeb148d36c7');
+        var index = client.initIndex('Book');
+
+        function algoliaSearch() {
+          index.search($input.val(), {
+            "getRankingInfo": 1,
+              "facets": "*",
+              "attributesToRetrieve": "*",
+              "highlightPreTag": "<em>",
+              "highlightPostTag": "</em>",
+              "hitsPerPage": 10,
+              "aroundLatLng": "48.8648482,2.3798534",
+              "aroundRadius": 10,
+              "facetFilters": [],
+              "maxValuesPerFacet": 100
+          }, searchCallback);
+        }
+
+        algoliaSearch();
+
+        $input.keyup(function() {
+          algoliaSearch();
+        }).focus();
+      });
+
+      function searchCallback(err, content) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        $hits.empty();
+
+        for (var i = 0; i < content.hits.length; i++) {
+          $hits.append('<img src=' + content.hits[i].image + '>');
+          $hits.append('<h2>' + content.hits[i].title + '</h2>');
+          $hits.append('<h4>' + content.hits[i].author + '</h4>');
+        }
+      };
+
+    </script>
 
 <% end %>
 
