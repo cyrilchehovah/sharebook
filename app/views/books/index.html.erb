@@ -21,36 +21,54 @@
 
       <form>
         <div class="input-group">
-          <input id="search_field" type="text" class="form-control input-lg" placeholder="HTML5 pour les web designers">
+          <input id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" class="form-control input-lg" placeholder="HTML5 pour les web designers">
           <span class="input-group-btn">
             <button class="btn btn-primary btn-lg" type="button"><i class="fa fa-search"></i></button>
           </span>
         </div><!-- /input-group -->
+
       </form>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div id="bookshelf" class="row bookshelf">
-    <% @array.each do |book| %>
-      <div class="col-xs-12 col-sm-6 col-md-3 block-book">
-        <%= link_to book_path(book) do %>
-          <div class="image-container">
-            <%= image_tag(book.image, class: "book img-responsive") %>
-          </div>
-        <% end %>
-        <figcaption><h2 class="text-center"><%= book.title %></h2>
-          <p class="text-center"><span><%= book.author %></span></p></figcaption>
-          <h4 class="text-center"><i class="fa fa-map-marker fa-lg green"></i> <%= book.offers.count%> prêteurs</h4>
-     </div>
-    <% end %>
+<div class="bookshelf">
+  <div class="container">
+    <div id="search-message" class="text-center"></div>
+    <!-- Hits -->
+    <div id="hits" class="row"></div>
+    <!-- /Hits -->
   </div>
+
 </div>
 
+<!-- Pagination -->
+<div id="pagination"></div>
+
+
+
 <% content_for :after_js do %>
+  <script src="//cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
   <script type="text/javascript">
     $( initialize_algolia_search );
   </script>
+  <!-- Hit template -->
+  <script type="text/template" id="hit-template">
+    {{#hits}}
+    <div class="hit col-xs-12 col-sm-6 col-md-3 block-book">
+      <div class="hit-image image-container">
+        <a href="/books/{{ objectID }}"><img class="book img-responsive"src="{{ image }}" alt="{{ name }}"></a>
+      </div>
+      <div class="hit-content">
+        <h2 class="hit-title text-center"><a href="/books/{{ objectID }}">{{ title }}</a></h2>
+        <p class="hit-author text-center"><span>{{{ _highlightResult.author.value }}}</span></p>
+      </div>
+    </div>
+    {{/hits}}
+  </script>
+
+
 <% end %>
+
+
 

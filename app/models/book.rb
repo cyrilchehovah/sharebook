@@ -1,8 +1,26 @@
 class Book < ActiveRecord::Base
+  include AlgoliaSearch
   CATEGORIES = %w(développement graphisme ux webdesign webmarketing)
+
   has_many :offers
+  has_many :users, through: :offers
 
   after_create :fetch_amazon_fields
+
+  algoliasearch do
+
+      attribute :title, :author, :image
+      add_attribute :_geoloc
+
+    end
+
+    def _geoloc
+       self.offers.select { |offer| offer.valid? }.map do |offer|
+        { lat: offer.user.latitude, lng: offer.user.longitude }
+        end
+    end
+
+  Book.reindex!
 
   validates :category, inclusion: { in: CATEGORIES }
 
@@ -16,12 +34,4 @@ class Book < ActiveRecord::Base
       self.save
     end
   end
-
-  # include AlgoliaSearch
-
-  #   algoliasearch do
-  #     attribute :title, :author
-  #   end
-
-
 end
