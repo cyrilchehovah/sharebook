@@ -9,10 +9,16 @@ class Book < ActiveRecord::Base
 
   algoliasearch do
 
-      attribute :title, :author, :image
+      attribute :title, :author, :image, :category
       add_attribute :_geoloc
 
+      attributesForFaceting [:category]
+
     end
+
+    algoliasearch per_environment: true do
+        attributesForFaceting ['category']
+      end
 
     def _geoloc
        self.offers.select { |offer| offer.valid? }.map do |offer|
