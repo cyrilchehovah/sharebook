@@ -29,20 +29,17 @@
     <div id="bookshelf" class="row bookshelf">
       <h2 class="text-center">Ses livres</h2>
         <% @offers.each do |offer| %>
-          <div class="col-xs-12 col-sm-3 col-space">
+          <div class="col-xs-12 col-sm-3 block-book-user">
             <%= link_to book_path(offer.book) do %>
               <div class="image-container">
                 <div class="filter"></div>
-                  <%= image_tag(offer.book.image, class: "offer.book img-responsive") %>
+                  <%= image_tag(offer.book.image, class: "book img-responsive") %>
                 </div>
             <% end %>
                  <figcaption><h2 class="text-center"><%= offer.book.title %></h2>
-                  <p class="text-center"><span><%= offer.book.category %></span></p>
-                  <p class="text-center"><%= offer.book.author %></p>
                  </figcaption>
-                   <h4 class="text-center"><i class="fa fa-map-marker fa-lg green"></i> <%= offer.book.offers.count%> prêteurs</h4>
-                   <%= link_to( offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
-                      <i class="fa fa-trash-o"></i>
+                   <%= link_to(offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
+                     <h4 class="text-center green"><i class="fa fa-trash-o fa-lg green"></i> Supprimer ce livre</h4>
                   <% end %>
           </div>
         <% end %>

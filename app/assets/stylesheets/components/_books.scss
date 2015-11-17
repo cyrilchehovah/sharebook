@@ -10,22 +10,35 @@
 
 /* Figure and book */
 
-.bookshelf .col-space {
-  margin: 0 47px 25px 47px;
+.bookshelf .block-book {
+ margin: 0 auto;
+ height: 480px;
+}
 
+.bookshelf .block-book-user {
+ margin: 0 auto;
+ height: 400px;
 }
 
 .book {
     position: relative;
     z-index: -1;
-    margin: 0 auto;
+    display: flex;
+    background-size: cover;
+    background-position: center center;
+    height: 200px;
+    margin: 0 auto 50px;
 }
 
 .image-container {
   position: relative;
 }
 
-.filter {
+figcaption h2 {
+  margin-top: -15px;
+}
+
+/*.filter {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%);
   bottom: 0;
   display: block;
@@ -36,7 +49,7 @@
   top: 0;
   z-index: 2;
 }
-
+*/
 .bookshelf figcaption p span {
     position: relative;
     display: block;
