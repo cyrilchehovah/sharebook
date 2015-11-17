@@ -42,8 +42,7 @@
     <!-- Right Column -->
     <div id="right-column">
       <div id="stats"></div>
-      <div id="hits">
-      </div>
+      <div id="hits"></div>
       <div id="pagination"></div>
     </div>
   </main>
@@ -51,53 +50,25 @@
 
 
 <% content_for :after_js do %>
-  <script>
-      var $input = $('input');
-      var $hits = $('#hits');
-
-
-      $(document).ready(function() {
-        var client = algoliasearch('LNZ38F4R3P', '44638aca0bf25d6a95b4fdeb148d36c7');
-        var index = client.initIndex('Book');
-
-        function algoliaSearch() {
-          index.search($input.val(), {
-            "getRankingInfo": 1,
-              "facets": "*",
-              "attributesToRetrieve": "*",
-              "highlightPreTag": "<em>",
-              "highlightPostTag": "</em>",
-              "hitsPerPage": 10,
-              "aroundLatLng": "48.8648482,2.3798534",
-              "aroundRadius": 10,
-              "facetFilters": [],
-              "maxValuesPerFacet": 100
-          }, searchCallback);
-        }
-
-        algoliaSearch();
-
-        $input.keyup(function() {
-          algoliaSearch();
-        }).focus();
-      });
-
-      function searchCallback(err, content) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        $hits.empty();
-
-        for (var i = 0; i < content.hits.length; i++) {
-          $hits.append('<img src=' + content.hits[i].image + '>');
-          $hits.append('<h2>' + content.hits[i].title + '</h2>');
-          $hits.append('<h4>' + content.hits[i].author + '</h4>');
-        }
-      };
-
-    </script>
+  <script src="//cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
+  <script type="text/javascript">
+    $( initialize_algolia_search );
+  </script>
+  <!-- Hit template -->
+  <script type="text/template" id="hit-template">
+    {{#hits}}
+    <div class="hit">
+      <div class="hit-image">
+        <img src="{{ image }}" alt="{{ name }}">
+      </div>
+      <div class="hit-content">
+        <h3 class="hit-title">{{ title }}</h3>
+        <h2 class="hit-author">{{{ _highlightResult.author.value }}}</h2>
+        <p class="hit-description">{{{ _highlightResult.description.value }}}</p>
+      </div>
+    </div>
+    {{/hits}}
+  </script>
 
 <% end %>
 
