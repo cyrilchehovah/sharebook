@@ -2,17 +2,23 @@ class Book < ActiveRecord::Base
   include AlgoliaSearch
   CATEGORIES = %w(développement graphisme ux webdesign webmarketing)
 
-  has_many :offers
+  has_many :offers, dependent: :destroy
   has_many :users, through: :offers
 
   after_create :fetch_amazon_fields
 
   algoliasearch do
 
-      attribute :title, :author, :image
+      attribute :title, :author, :image, :category
       add_attribute :_geoloc
 
+      attributesForFaceting [:category]
+
     end
+
+    algoliasearch per_environment: true do
+        attributesForFaceting ['category']
+      end
 
     def _geoloc
        self.offers.select { |offer| offer.valid? }.map do |offer|

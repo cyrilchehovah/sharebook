@@ -32,6 +32,10 @@
   </div>
 </div>
 
+<div id="left-column">
+    <div id="facets"></div>
+  </div>
+
 <div class="bookshelf">
   <div class="container">
     <div id="search-message" class="text-center"></div>
@@ -66,6 +70,23 @@
     </div>
     {{/hits}}
   </script>
+
+  <!-- Facet template -->
+  <script type="text/template" id="facet-template">
+    <div class="facet">
+      <h5>{{ title }}</h5>
+      <ul>
+        {{#values}}
+        <li>
+          <a href="" class="facet-link toggle-refine {{#disjunctive}}facet-disjunctive{{/disjunctive}} {{#isRefined}}facet-refined{{/isRefined}}" data-facet="{{ facet }}" data-value="{{ name }}">
+            {{ name }}<span class="facet-count">{{ count }}</span>
+          </a>
+        </li>
+        {{/values}}
+      </ul>
+    </div>
+  </script>
+
 
 
 <% end %>
