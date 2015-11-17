@@ -33,23 +33,19 @@
 
 <div class="container">
   <div id="bookshelf" class="row bookshelf">
-   <!-- <figure> -->
     <% @array.each do |book| %>
-      <div class="row">
-        <div class="col-xs-6 col-sm-3">
-          <%= link_to book_path(book) do %>
+      <div class="col-xs-12 col-sm-6 col-md-3 block-book">
+        <%= link_to book_path(book) do %>
           <div class="image-container">
             <div class="filter"></div>
-            <%= image_tag(book.image, class: "book img-responsive") %>
+              <%= image_tag(book.image, class: "book img-responsive") %>
           </div>
-          <% end %>
-            <figcaption><h2 class="text-center"><%= book.title %></h2>
-            <p class="text-center"><span><%= book.author %></span></p></figcaption>
-            <h4 class="text-center"><i class="fa fa-map-marker fa-lg green"></i> <%= book.offers.count%> prêteurs</h4>
-        </div>
-      </div>
+        <% end %>
+        <figcaption><h2 class="text-center"><%= book.title %></h2>
+          <p class="text-center"><span><%= book.author %></span></p></figcaption>
+          <h4 class="text-center"><i class="fa fa-map-marker fa-lg green"></i> <%= book.offers.count%> prêteurs</h4>
+     </div>
     <% end %>
-  <!--  </figure> -->
   </div>
 </div>
 

@@ -2,8 +2,12 @@
   <div class="container">
     <div class="row">
 
+
       <div class="col-md-4">
-        <%= image_tag @book.image, class:'img-responsive' %>
+        <div class="image-container">
+          <div class="filter"></div>
+          <%= image_tag @book.image, class: "book-fiche img-responsive" %>
+        </div>
       </div>
 
       <div class="col-md-8">
@@ -46,7 +50,7 @@
                   <% end %>
 
                 <% else %>
-                  <p>Le livre de ce prêteur est en cours de prêt</p>
+                  <p>Ce livre n'est pas disponible actuellement </p>
                 <% end %>
               </div>
             </div>
