@@ -32,9 +32,8 @@
           <div class="col-xs-12 col-sm-3 block-book-user">
             <%= link_to book_path(offer.book) do %>
               <div class="image-container">
-                <div class="filter"></div>
-                  <%= image_tag(offer.book.image, class: "book img-responsive") %>
-                </div>
+                <%= image_tag(offer.book.image, class: "book img-responsive") %>
+              </div>
             <% end %>
                  <figcaption><h2 class="text-center"><%= offer.book.title %></h2>
                  </figcaption>
