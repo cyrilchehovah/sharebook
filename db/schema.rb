@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20151116151025) do
     t.text     "description"
     t.string   "category"
     t.string   "author"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"

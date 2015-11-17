@@ -1,23 +1,18 @@
 class Book < ActiveRecord::Base
-
   include AlgoliaSearch
+  CATEGORIES = %w(développement graphisme ux webdesign webmarketing)
 
   has_many :offers
   has_many :users, through: :offers
 
   after_create :fetch_amazon_fields
 
-
-
   algoliasearch do
 
-    attribute :title, :author, :image
-
-
-    add_attribute :_geoloc
+      attribute :title, :author, :image
+      add_attribute :_geoloc
 
     end
-
 
     def _geoloc
        self.offers.select { |offer| offer.valid? }.map do |offer|
@@ -25,10 +20,9 @@ class Book < ActiveRecord::Base
         end
     end
 
-
-
   Book.reindex!
 
+  validates :category, inclusion: { in: CATEGORIES }
 
   def fetch_amazon_fields
     item = Amazon::Ecs.item_lookup(self.isbn_10, { :response_group => 'Large' }).items.first
@@ -40,7 +34,4 @@ class Book < ActiveRecord::Base
       self.save
     end
   end
-
-
-
 end
