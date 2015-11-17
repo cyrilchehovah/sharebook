@@ -6,7 +6,7 @@ class Booking < ActiveRecord::Base
 
 
   has_many :messages, dependent: :destroy
-  has_many :owner_to_reader_reviews, dependent: :destroy
+  # has_many :owner_to_reader_reviews, dependent: :destroy
 
 
   validates :offer, presence: true

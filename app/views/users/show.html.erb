@@ -35,8 +35,9 @@
                 <%= image_tag(offer.book.image, class: "book img-responsive") %>
               </div>
             <% end %>
-                 <figcaption><h2 class="text-center"><%= offer.book.title %></h2>
-                 </figcaption>
+                 <div>
+                  <h2 class="text-center"><%= offer.book.title %></h2>
+                 </div>
                    <%= link_to(offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
                      <h4 class="text-center green"><i class="fa fa-trash-o fa-lg green"></i> Supprimer ce livre</h4>
                   <% end %>

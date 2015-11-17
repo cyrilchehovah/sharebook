@@ -2,7 +2,7 @@ class Book < ActiveRecord::Base
   include AlgoliaSearch
   CATEGORIES = %w(développement graphisme ux webdesign webmarketing)
 
-  has_many :offers
+  has_many :offers, dependent: :destroy
   has_many :users, through: :offers
 
   after_create :fetch_amazon_fields

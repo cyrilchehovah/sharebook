@@ -53,7 +53,7 @@ var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 $searchInput
 var query = $(this).val()
 toggleIconEmptyInput(query)
-algoliaHelper.setQuery(query).setQueryParameter('aroundLatLngViaIP', true).setQueryParameter('aroundRadius', 1000).search()
+algoliaHelper.setQuery(query).setQueryParameter('aroundLatLngViaIP', true).setQueryParameter('aroundRadius', 10000).search()
 
 // Input binding
 $searchInput

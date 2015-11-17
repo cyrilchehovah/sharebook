@@ -85,6 +85,26 @@
   </div>
 </div>
 
+<!-- Les livres -->
+
+<div class="container">
+  <div id="bookshelf" class="row bookshelf">
+    <h2 class="text-center">Les derniers livres ajoutés</h2>
+      <% @books.order("created_at desc").limit(4).each do |book| %>
+        <div class="col-xs-12 col-sm-3 block-book-user">
+          <%= link_to book_path(book) do %>
+            <div class="image-container">
+              <%= image_tag(book.image, class: "book img-responsive") %>
+            </div>
+          <% end %>
+          <div>
+            <h2 class="text-center"><%= book.title %></h2>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
+
 <!-- Temoignages -->
 
 <div class="container padded">
