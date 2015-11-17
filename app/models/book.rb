@@ -14,11 +14,11 @@ class Book < ActiveRecord::Base
     end
   end
 
-  include AlgoliaSearch
+  # include AlgoliaSearch
 
-    algoliasearch do
-      attribute :title, :author
-    end
+  #   algoliasearch do
+  #     attribute :title, :author
+  #   end
 
 
 end

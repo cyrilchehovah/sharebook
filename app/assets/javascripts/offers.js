@@ -5,7 +5,7 @@
 
 var fill_and_submit_book_form = function() {
   // On récupère le "data-book", on remet les caractères spéciaux, et on transforme la string en un hash javascript
-  var data = JSON.parse(unescape($(".card-container").data("book")));
+  var data = JSON.parse(unescape($(".card-container").last().data("book")));
 
   // Vis ta vis de vinaigrette
   $('#book_title'      ).val(data.title);
@@ -52,7 +52,7 @@ var create_book_result_list = function(data) {
     // le met dans notre HTML dans un attribut "data-book"
     // Pour chaque résultat on crée le HTML et on le place sans l'élément #results
     $('#results').append(
-      '<div class="card-container" data-toggle="modal" data-target="#myModal" data-book="' + escape(JSON.stringify(bookInfo)) + '" id="result_' + i + '">' +
+      '<div class="card-container" data-toggle="modal" data-target="#myModal" id="result_' + i + '">' +
         '<hr>' +
         '<div class="row">' +
           '<div class ="col-xs-offset-1 col-xs-2">' +
@@ -85,8 +85,17 @@ var create_book_result_list = function(data) {
       publisher:    (volInfo.publisher)  ? volInfo.publisher[0] : "",
       isbn_10:       ""
     };
+    if (volInfo.industryIdentifiers) {
+      for( j=0; j < volInfo.industryIdentifiers.length ; j++) {
+        if( volInfo.industryIdentifiers[j].type == "ISBN_10") {
+          bookInfo["isbn_10"] = volInfo.industryIdentifiers[j].identifier
+        }
+      }
+    } else {
+      bookInfo["isbn_10"]     = "";
+    }
 
-    var modalBody = '<div class="card-container" data-toggle="modal" data-target="#myModal">' +
+    var modalBody = '<div class="card-container" data-toggle="modal" data-book="' + escape(JSON.stringify(bookInfo)) + '"data-target="#myModal">' +
                       '<div class="row">' +
                         '<div class ="col-xs-offset-1 col-xs-2">' +
                           '<img src="' + bookInfo.image + '" alt="book-cover" class="result-img img-responsive">' +
