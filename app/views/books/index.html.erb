@@ -48,9 +48,8 @@
   </main>
 </div>
 
-<div class="container">
+<!--<div class="container">
   <div id="bookshelf" class="row bookshelf">
-   <!-- <figure> -->
     <% @array.each do |book| %>
       <div class="row">
         <div class="col-xs-6 col-sm-3">
@@ -66,22 +65,15 @@
         </div>
       </div>
     <% end %>
-  <!--  </figure> -->
+
   </div>
-</div>
+</div>-->
 
 <% content_for :after_js do %>
-
-
-
   <script src="//cdn.jsdelivr.net/algoliasearch.helper/2/algoliasearch.helper.min.js"></script>
-
-
-
   <script type="text/javascript">
     $( initialize_algolia_search );
   </script>
-
   <!-- Hit template -->
   <script type="text/template" id="hit-template">
     {{#hits}}
@@ -91,7 +83,7 @@
       </div>
       <div class="hit-content">
         <h3 class="hit-title">{{ title }}</h3>
-        <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
+        <h2 class="hit-author">{{{ _highlightResult.author.value }}}</h2>
         <p class="hit-description">{{{ _highlightResult.description.value }}}</p>
       </div>
     </div>

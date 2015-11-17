@@ -1,14 +1,38 @@
 class Book < ActiveRecord::Base
 
+  include AlgoliaSearch
+
   has_many :offers
+  has_many :users, through: :offers
 
   after_create :fetch_amazon_fields
 
-  include AlgoliaSearch
+
 
   algoliasearch do
-    attribute :title, :author
-  end
+
+    attribute :title, :author, :image
+
+
+    add_attribute :users_addresses
+
+    end
+
+
+
+      def users_addresses
+         self.offers.select { |offer| offer.valid? }.map do |offer|
+          { address1: offer.user.address1, attr: offer.user.address1 }
+          end
+        end
+
+      # def _geoloc
+      #   self.users.select { |user|  }.map do |user|
+      #     { lat_attr: user.latitude, lng_attr: user.longitude, attr: user.latitude, attr: user.longitude}
+      #   end
+      # end
+
+
 
   Book.reindex!
 
