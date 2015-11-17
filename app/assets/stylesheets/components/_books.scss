@@ -28,8 +28,10 @@
     background-position: center center;
     height: 200px;
     margin: 0 auto 50px;
+    box-shadow : -3px 2px rgba(192,192,192,1);
     &-fiche{
       height: 325px;
+      box-shadow : -3px 2px rgba(192,192,192,1);
     }
 }
 
@@ -41,18 +43,6 @@ figcaption h2 {
   margin-top: -15px;
 }
 
-/*.filter {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.1) 0%, rgba(211, 211, 211, 0.1) 5%, rgba(255, 255, 255, 0.15) 5%, rgba(255, 255, 255, 0.1) 9%, rgba(0, 0, 0, 0.01) 100%);
-  bottom: 0;
-  display: block;
-  left: 0;
-  opacity: 0.5;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 2;
-}
-*/
 .bookshelf figcaption p span {
     position: relative;
     display: block;
