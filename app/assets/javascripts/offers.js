@@ -25,7 +25,7 @@ var fill_and_submit_book_form = function() {
 var create_book_result_list = function(data) {
 // Premièrement : effacement du HTML
   $('#results').html('');
-  for( i = 0; i < data.items.length; i++) {
+  for(i = 0; i < data.items.length; i++) {
     var volInfo = data.items[i].volumeInfo;
     // On récupère toutes les infos et on en fait un beau hash
     // console.log(data.items[i].volumeInfo);
@@ -88,7 +88,7 @@ var create_book_result_list = function(data) {
       isbn_10:       ""
     };
     if (volInfo.industryIdentifiers) {
-      for( j=0; j < volInfo.industryIdentifiers.length ; j++) {
+      for(j=0; j < volInfo.industryIdentifiers.length ; j++) {
         if( volInfo.industryIdentifiers[j].type == "ISBN_10") {
           bookInfo["isbn_10"] = volInfo.industryIdentifiers[j].identifier
         }
