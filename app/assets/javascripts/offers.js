@@ -7,7 +7,7 @@ var fill_and_submit_book_form = function() {
   // On récupère le "data-book", on remet les caractères spéciaux, et on transforme la string en un hash javascript
   var data = JSON.parse(unescape($(".card-container").last().data("book")));
 
-  // Vis ta vis de vinaigrette
+  // Vis ta vie de vinaigrette
   $('#book_title'      ).val(data.title);
   $('#book_subtitle'   ).val(data.subtitle);
   $('#book_description').val(data.description);
@@ -15,6 +15,8 @@ var fill_and_submit_book_form = function() {
   $('#book_author'     ).val(data.author);
   $('#book_publisher'  ).val(data.publisher);
   $('#book_isbn_10'    ).val(data.isbn_10);
+  var category = $('#book_select_category').val();
+  $('#book_category').val(category);
   setTimeout(function() {
     $('#new_book').submit();
   }, 500);

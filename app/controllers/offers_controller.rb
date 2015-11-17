@@ -31,6 +31,7 @@ class OffersController < ApplicationController
     if @book == nil
       # créer le book, puis l'offer
       @book = Book.new(params_book)
+      @book.save
       # @book.sync_with_amazon
     end
 

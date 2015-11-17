@@ -1,7 +1,10 @@
 class Book < ActiveRecord::Base
+  CATEGORIES = %w(développement graphisme ux webdesign webmarketing)
   has_many :offers
 
   after_create :fetch_amazon_fields
+
+  validates :category, inclusion: { in: CATEGORIES }
 
   def fetch_amazon_fields
     item = Amazon::Ecs.item_lookup(self.isbn_10, { :response_group => 'Large' }).items.first
