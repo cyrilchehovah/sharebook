@@ -105,5 +105,3 @@ var search_book = function() {
 }
 
 
-
-
