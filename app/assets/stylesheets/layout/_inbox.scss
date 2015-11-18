@@ -8,5 +8,6 @@
   padding: 1em;
 }
 
-
-
+form#new_message textarea {
+  min-height: 100px;
+}
