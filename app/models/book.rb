@@ -16,9 +16,9 @@ class Book < ActiveRecord::Base
 
     end
 
-    algoliasearch per_environment: true do
-        attributesForFaceting ['category']
-      end
+    # algoliasearch per_environment: true do
+    #     attributesForFaceting ['category']
+    #   end
 
     def _geoloc
        self.offers.select { |offer| offer.valid? }.map do |offer|
