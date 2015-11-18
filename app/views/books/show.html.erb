@@ -32,28 +32,39 @@
       <% end %>
 
       <div class="col-md-4">
-
-
           <!-- OFFERS -->
           <% @offers.each do |offer|%>
-            <div class="row">
-              <div class="col-md-2">
-               <%= image_tag (offer.user.profil_img ? offer.user.profil_img : offer.user.picture.url(:thumb)), class:'avatar avatar-large' %>
+            <% if offer.user == current_user %>
+              <div class="row">
+                <div class="col-md-2">
+                 <%= image_tag (offer.user.profil_img ? offer.user.profil_img : offer.user.picture.url(:thumb)), class:'avatar avatar-large' %>
+                </div>
+                <div class="col-md-10">
+                  <h2 class="mb10 mt0"><%= offer.user.first_name%> <%= offer.user.last_name%></h2>
+                  <h4><%= link_to 'voir votre profil', user_path(offer.user)%></h4>
+                </div>
+                <hr>
               </div>
-              <div class="col-md-10">
-                <h2 class="mb10 mt0"><%= offer.user.first_name%> <%= offer.user.last_name%></h2>
-                <h4><%= link_to 'voir son profil', user_path(offer.user)%></h4>
-                <% if offer.published? %>
-                  <%= simple_form_for [offer, @booking] do |f| %>
-                    <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
-                  <% end %>
+            <% else %>
+              <div class="row">
+                <div class="col-md-2">
+                 <%= image_tag (offer.user.profil_img ? offer.user.profil_img : offer.user.picture.url(:thumb)), class:'avatar avatar-large' %>
+                </div>
+                <div class="col-md-10">
+                  <h2 class="mb10 mt0"><%= offer.user.first_name%> <%= offer.user.last_name%></h2>
+                  <h4><%= link_to 'voir son profil', user_path(offer.user)%></h4>
+                  <% if offer.published? %>
+                    <%= simple_form_for [offer, @booking] do |f| %>
+                      <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
+                    <% end %>
 
-                <% else %>
-                  <p>Ce livre n'est pas disponible actuellement </p>
-                <% end %>
+                  <% else %>
+                    <p>Ce livre n'est pas disponible actuellement </p>
+                  <% end %>
+                </div>
               </div>
-            </div>
             <hr>
+            <% end %>
           <% end %>
 
         </div>
