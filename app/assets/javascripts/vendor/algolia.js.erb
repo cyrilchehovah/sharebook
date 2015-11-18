@@ -3,7 +3,7 @@ function initialize_algolia_search() {
 // Replace with your own values
 var APPLICATION_ID = 'LNZ38F4R3P';
 var SEARCH_ONLY_API_KEY = '44638aca0bf25d6a95b4fdeb148d36c7';
-var INDEX_NAME = 'Book';
+var INDEX_NAME = 'Book_<%= Rails.env %>';
 var PARAMS = {
   hitsPerPage: 10,
   maxValuesPerFacet: 8,
