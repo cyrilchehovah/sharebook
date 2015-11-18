@@ -28,7 +28,7 @@ class OffersController < ApplicationController
   def create_book_and_offer
     @book = Book.find_by(title: params[:book][:title])
 
-    if @book == nil
+    unless @book
       # créer le book, puis l'offer
       @book = Book.new(params_book)
       @book.save
@@ -36,13 +36,17 @@ class OffersController < ApplicationController
     end
 
     @offer      = @book.offers.new
-    @offer.user = current_user
-    @offer.book = @book
-
-    if @offer.save
-      redirect_to book_path(@book)
-    else
+    if current_user.offers.map { |offer| offer.book }.include? @book
+      flash.now[:alert] = "Ce livre fait déjà partie de votre bibliothèque!"
       render :new
+    else
+      @offer.user = current_user
+      @offer.book = @book
+      if @offer.save
+        redirect_to book_path(@book)
+      else
+        render :new
+      end
     end
   end
 
