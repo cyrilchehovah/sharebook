@@ -20,6 +20,7 @@ class BooksController < ApplicationController
       marker.lat offer.user.latitude
       marker.lng offer.user.longitude
       marker.json({:id => offer.id })
+      marker.picture url: ActionController::Base.helpers.asset_path("marker.png"), width: 45, height: 45
       marker.infowindow render_to_string(:partial => "/books/infowindowcontent", :locals => { :object => offer})
 
       # "<strong>#{offer.user.first_name} #{offer.user.last_name}</strong>
