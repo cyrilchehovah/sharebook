@@ -7,7 +7,7 @@ class Book < ActiveRecord::Base
 
   after_create :fetch_amazon_fields
 
-  algoliasearch per_environment: true do
+  algoliasearch index_name: "Book#{ENV['ALGOLIA_SUFFIX']}" do
     attribute :title, :author, :image, :category
     add_attribute :_geoloc
     attributesForFaceting [:category]
