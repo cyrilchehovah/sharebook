@@ -12,7 +12,7 @@
       <div class="col-md-8">
         <h1 class="mt0"><%= @book.title %></h1>
         <h3> <%= @book.subtitle %> </h3>
-        <h2><%= @book.category %> - <%= @book.author %></h2>
+        <h3><%= @book.category %> - <%= @book.author %></h3>
         <h2> <%= @book.publisher %> </h2>
         <% if @book.pages_number %>
           <h5> <%= @book.pages_number %> pages </h5>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-10">
                   <h2 class="mb10 mt0"><%= offer.user.first_name%> <%= offer.user.last_name%></h2>
-                  <h4><%= link_to 'voir votre profil', user_path(offer.user)%></h4>
+                  <h4><%= link_to 'voir mon profil', user_path(offer.user)%></h4>
                 </div>
                 <hr>
               </div>
@@ -79,6 +79,7 @@
                 markers = handler.addMarkers(<%= raw @markers.to_json %>);
                 handler.bounds.extendWith(markers);
                 handler.fitMapToBounds();
+                handler.getMap().setZoom(16);
                   });
                 })
           <% end %>
@@ -89,7 +90,3 @@
 
   </div>
 </div>
-
-
-
-

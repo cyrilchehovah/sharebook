@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 # Algolia search
 gem 'algoliasearch-rails'
 
+
+gem 'hogan_assets'
+
+
 #parsing on Amazon
 gem 'amazon-ecs'
 

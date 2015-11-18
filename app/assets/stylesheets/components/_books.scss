@@ -4,7 +4,6 @@
 
 .bookshelf {
     position: relative;
-    margin: 40px auto 0;
     list-style: none;
 }
 
@@ -39,18 +38,18 @@
   position: relative;
 }
 
-figcaption h2 {
+div h2 {
   margin-top: -15px;
 }
 
-.bookshelf figcaption p span {
+.bookshelf div p span {
     position: relative;
     display: block;
     margin: 1em 0 1em 0;
     padding: .5em 0 0 0;
 }
 
-.bookshelf figcaption p span::before {
+.bookshelf div p span::before {
     position: absolute;
     top: 0;
     left: 40%;

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_many :messages
   has_many :offers_bookings, through: :offers, source: :bookings
+  has_many :books, through: :offers
 
    has_attached_file :picture,
    styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "http://placehold.it/200x200"
@@ -53,6 +54,11 @@ class User < ActiveRecord::Base
 
   geocoded_by :address1
   before_validation :geocode, if: :address1_changed?
+
+  after_update :algoliaReindex
+  def algoliaReindex
+    Book.reindex!
+  end
 
   # after_validation :geocode_or_reset_coordinates, if: :address1_changed?
 

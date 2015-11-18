@@ -22,3 +22,30 @@
   text-transform : uppercase;
   font-weight: bold;
 }
+
+.btn-map{
+  margin-bottom: 3px;
+  font-size: 1em;
+}
+
+#facets {
+  margin-top:2em;
+}
+
+.facet-link {
+  border: 1px solid #dadada;
+  border-radius: 2px;
+  margin: 1em auto;
+  padding: 1em;
+  position: relative;
+  color: $gray-light;
+}
+
+.facet-link.facet-refined {
+  color: $green;
+  border-left: 3px solid #b8da7c;
+}
+
+a.remove {
+  cursor: pointer;
+}

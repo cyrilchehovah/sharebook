@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require algolia/v3/algoliasearch.min
 //= require algolia/typeahead.jquery
+//= require hogan.js
 
 //= require_tree .
 
@@ -68,10 +69,6 @@ function onPlaceChanged() {
 google.maps.event.addDomListener(window, 'load', function() {
   initializeAutocomplete('user_input_autocomplete_address');
 });
-
-
-
-
 
 
 
