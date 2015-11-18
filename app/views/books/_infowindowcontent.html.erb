@@ -2,8 +2,8 @@
   <%= image_tag (object.user.profil_img ? object.user.profil_img : object.user.picture.url(:thumb)), class: 'avatar avatar-large' %>
 
   <p><%= object.user.first_name%> <%= object.user.last_name%></p>
-  <%= link_to 'voir son profil', user_path(object.user), class: 'btn btn-primary'%>
+  <%= link_to 'voir son profil', user_path(object.user), class: 'btn btn-primary btn-map'%>
 
   <%= simple_form_for [object, @booking] do |f| %>
-  <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary" %>
+  <%= f.button :submit, "Réservez ce livre", class: "btn btn-primary btn-map" %>
 <% end %>
