@@ -1,12 +1,12 @@
 
-<div id="messages-buttons" class="forms-inline">
-  <%= render 'buttons' %>
+<div class="inbox-header">
+  <h2><%= @booking.offer.book.title%></h2>
+
+  <div id="messages-buttons" class="forms-inline">
+    <%= render 'buttons' %>
+  </div>
 </div>
-<hr>
 
-
-
-<h2><%= @booking.offer.book.title%></h2>
 <div id="message-content">
 
 
@@ -17,6 +17,6 @@
 </div>
 
 <%= simple_form_for [@booking, @message], :remote => true  do  |f| %>
-  <%= f.input :content %>
+  <%= f.input :content, as: :text, label: false %>
   <%= f.submit "envoyer", class: "btn btn-primary", id: "bouton-message" %>
 <% end %>
