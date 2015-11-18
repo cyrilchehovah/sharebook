@@ -7,26 +7,19 @@ class Book < ActiveRecord::Base
 
   after_create :fetch_amazon_fields
 
-  algoliasearch do
+  algoliasearch per_environment: true do
+    attribute :title, :author, :image, :category
+    add_attribute :_geoloc
+    attributesForFaceting [:category]
+  end
 
-      attribute :title, :author, :image, :category
-      add_attribute :_geoloc
-
-      attributesForFaceting [:category]
-
+  def _geoloc
+    self.offers.select { |offer| offer.valid? }.map do |offer|
+      { lat: offer.user.latitude, lng: offer.user.longitude }
     end
+  end
 
-    # algoliasearch per_environment: true do
-    #     attributesForFaceting ['category']
-    #   end
-
-    def _geoloc
-       self.offers.select { |offer| offer.valid? }.map do |offer|
-        { lat: offer.user.latitude, lng: offer.user.longitude }
-        end
-    end
-
-  Book.reindex!
+  # Book.reindex!
 
   validates :category, inclusion: { in: CATEGORIES }
 

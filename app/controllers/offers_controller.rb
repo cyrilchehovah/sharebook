@@ -40,6 +40,7 @@ class OffersController < ApplicationController
     @offer.book = @book
 
     if @offer.save
+      Book.reindex!
       redirect_to book_path(@book)
     else
       render :new
