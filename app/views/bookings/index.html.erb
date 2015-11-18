@@ -8,7 +8,7 @@
               <%= link_to booking_path(borrow), class: "see_message_link", remote: :true do %>
                 <div class="row">
                   <div class="col-xs-3">
-                    <%= image_tag(borrow.user.picture, class: "img-responsive img-circle") %>
+                    <%= image_tag (borrow.user.profil_img ? borrow.user.profil_img : borrow.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
                   </div>
                   <div class="col-xs-9">
                     <h4><%= borrow.offer.book.title%></h4>
@@ -27,7 +27,7 @@
               <%= link_to booking_path(lending), class: "see_message_link", remote: :true do %>
                 <div class="row">
                   <div class="col-xs-3">
-                    <%= image_tag(lending.user.picture, class: "img-responsive img-circle") %>
+                    <%= image_tag (lending.user.profil_img ? lending.user.profil_img : lending.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
                   </div>
                   <div class="col-xs-9">
                     <h4><%= lending.offer.book.title%></h4>
