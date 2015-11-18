@@ -28,7 +28,7 @@
 
 <!-- Categories -->
 
-<div class="container">
+<div class="container padded">
   <div class="row">
     <div class="col-sm-4">
       <div class="banner-top" style='background-image: url("<%= image_url("category-ux.jpg") %>")'>
@@ -81,11 +81,11 @@
 
 <!-- Les livres -->
 
-<div class="container">
+<div class="container padded">
   <div id="bookshelf" class="row bookshelf">
     <h2 class="text-center">Les derniers livres ajoutés</h2>
       <% @books.order("created_at desc").limit(4).each do |book| %>
-        <div class="col-xs-12 col-sm-3 block-book-user">
+        <div class="col-xs-12 col-sm-3">
           <%= link_to book_path(book) do %>
             <div class="image-container">
               <%= image_tag(book.image, class: "book img-responsive") %>
