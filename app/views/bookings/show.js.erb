@@ -1,3 +1,4 @@
 $('#messages').html('<%= j render "messages" %>');
-$('#counter').text('<%= current_user.unread_messages_count %>')
-
+$('#counter').text('<%= current_user.unread_messages_count %>');
+$('li.js-booking-inbox').removeClass('active');
+$('li.js-booking-inbox-<%= @booking.id %>').addClass('active');
