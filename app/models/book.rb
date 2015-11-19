@@ -19,7 +19,6 @@ class Book < ActiveRecord::Base
     end
   end
 
-  # Book.reindex!
 
   validates :category, inclusion: { in: CATEGORIES }
 

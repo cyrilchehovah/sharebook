@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    @category = params[:cat]
     @books = Book.all
     @array = []
     @books.each do |book|

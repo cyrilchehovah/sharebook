@@ -31,50 +31,60 @@
 <div class="container padded">
   <div class="row">
     <div class="col-sm-4">
-      <div class="banner-top" style='background-image: url("<%= image_url("category-ux.jpg") %>")'>
-        <div class="card-image">
-          <div class="bg-filter bg-gradient"></div>
-          <h2>UX</h2>
+      <%= link_to books_path(cat: 'ux'), class: 'link-unstyled' do %>
+        <div class="banner-top" style='background-image: url("<%= image_url("category-ux.jpg") %>")'>
+          <div class="card-image">
+            <div class="bg-filter bg-gradient"></div>
+            <h2>UX</h2>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
     <div class="col-sm-4">
-      <div class="banner-top" style='background-image: url("<%= image_url("category-graphisme.jpg") %>")'>
-        <div class="card-image">
-          <div class="bg-filter bg-gradient"></div>
-          <h2>Graphisme</h2>
+      <%= link_to books_path(cat: 'graphisme'), class: 'link-unstyled' do %>
+        <div class="banner-top" style='background-image: url("<%= image_url("category-graphisme.jpg") %>")'>
+          <div class="card-image">
+            <div class="bg-filter bg-gradient"></div>
+            <h2>Graphisme</h2>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
     <div class="col-sm-4">
-      <div class="banner-top" style='background-image: url("<%= image_url("category-developement.jpg") %>")'>
-        <div class="card-image">
-          <div class="bg-filter bg-gradient"></div>
-          <h2>Développement</h2>
+      <%= link_to books_path(cat: 'développement'), class: 'link-unstyled' do %>
+        <div class="banner-top" style='background-image: url("<%= image_url("category-developement.jpg") %>")'>
+          <div class="card-image">
+            <div class="bg-filter bg-gradient"></div>
+            <h2>Développement</h2>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-sm-8">
-      <div class="banner-top" style='background-image: url("<%= image_url("category-webdesign.jpg") %>")'>
-        <div class="card-image">
-          <div class="bg-filter bg-gradient"></div>
-          <h2>Webdesign</h2>
+      <%= link_to books_path(cat: 'webdesign'), class: 'link-unstyled' do %>
+        <div class="banner-top" style='background-image: url("<%= image_url("category-webdesign.jpg") %>")'>
+          <div class="card-image">
+            <div class="bg-filter bg-gradient"></div>
+            <h2>Webdesign</h2>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
     <div class="col-sm-4">
-      <div class="banner-top" style='background-image: url("<%= image_url("category-webmarketing.jpg") %>")'>
-        <div class="card-image">
-          <div class="bg-filter bg-gradient"></div>
-          <h2>Webmarketing</h2>
+      <%= link_to books_path(cat: 'webmarketing'), class: 'link-unstyled' do %>
+        <div class="banner-top" style='background-image: url("<%= image_url("category-webmarketing.jpg") %>")'>
+          <div class="card-image">
+            <div class="bg-filter bg-gradient"></div>
+            <h2>Webmarketing</h2>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

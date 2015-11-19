@@ -1,4 +1,5 @@
 function initialize_algolia_search() {
+  console.log("test");
 
 // Replace with your own values
 var APPLICATION_ID = 'LNZ38F4R3P';
@@ -41,7 +42,17 @@ var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 $searchInput
 var query = $(this).val()
 toggleIconEmptyInput(query)
-algoliaHelper.setQuery(query).setQueryParameter('aroundLatLngViaIP', true).setQueryParameter('aroundRadius', 50000).search()
+
+var category = $('#hits').data('category');
+
+if (category.length) {
+  algoliaHelper.toggleRefine('category', category).setQuery(query).setQueryParameter('aroundLatLngViaIP', true).setQueryParameter('aroundRadius', 50000).search();
+}
+else {
+  algoliaHelper.setQuery(query).setQueryParameter('aroundLatLngViaIP', true).setQueryParameter('aroundRadius', 50000).search();
+}
+
+// algoliaHelper.setQuery(query).setQueryParameter('aroundLatLngViaIP', true).setQueryParameter('aroundRadius', 50000).search()
 
 // Input binding
 $searchInput
