@@ -31,6 +31,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
+    Book.reindex!
     redirect_to user_path(@user)
   end
 
