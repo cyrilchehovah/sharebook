@@ -24,6 +24,7 @@ gem 'devise-i18n'
 
 # Facebook-connect
 gem 'omniauth-facebook'
+gem 'pry'
 
 gem 'figaro'
 gem 'aws-sdk', '< 2.0'
