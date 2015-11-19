@@ -1,45 +1,44 @@
 <div class="container">
   <div class="padded">
 
+
   <div class="inbox-content-container">
     <div class="row">
       <div class="col-md-4">
         <div class="inbox-index">
           <% if @borrow_bookings != [] %>
               <h3 class="booking-title">Mes demandes</h3>
+              <ul class="list-unstyled">
 
-            <ul class="list-unstyled">
-
-              <% @borrow_bookings.each do |borrow| %>
-                  <%= link_to booking_path(borrow), class: "see_message_link", remote: :true do %>
-                    <li>
-                      <div class="row">
-                        <div class="col-xs-3">
-                          <%= image_tag (borrow.offer.user.profil_img ? borrow.offer.user.profil_img : borrow.offer.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
+                <% @borrow_bookings.each do |borrow| %>
+                    <%= link_to booking_path(borrow), class: "see_message_link", remote: :true do %>
+                      <li>
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <%= image_tag (borrow.offer.user.profil_img ? borrow.offer.user.profil_img : borrow.offer.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
+                          </div>
+                          <div class="col-xs-9">
+                            <h3><%= borrow.offer.book.title%></h3>
+                            <h4><%= borrow.offer.user.first_name%> -
+                              <span>
+                                <% if borrow.state == "pending" %>
+                                  en attente de validation
+                                <% elsif borrow.state == "accepted" %>
+                                  prêt en cours
+                                <% elsif borrow.state == "canceled" %>
+                                  demande annulée
+                                <% else %>
+                                  prêt terminé
+                                <% end %>
+                              </span>
+                            </h4>
+                          </div>
                         </div>
-                        <div class="col-xs-9">
-                          <h3><%= borrow.offer.book.title%></h3>
-                          <h4><%= borrow.offer.user.first_name%> -
-                            <span>
-                              <% if borrow.state == "pending" %>
-                                en attente de validation
-                              <% elsif borrow.state == "accepted" %>
-                                prêt en cours
-                              <% elsif borrow.state == "canceled" %>
-                                demande annulée
-                              <% else %>
-                                prêt terminé
-                              <% end %>
-                            </span>
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    <% end %>
                   <% end %>
-                <% end %>
-            <% end %>
-
-          </ul>
+              <% end %>
+            </ul>
 
           <% if @lend_bookings != [] %>
             <h3 class="booking-title">Mes emprunts</h3>
