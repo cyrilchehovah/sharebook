@@ -41,6 +41,36 @@ $(function() {
 
 });
 
+// jQuery show/hide text description
+jQuery(function(){
+
+    var minimized_elements = $('.truncate');
+
+    minimized_elements.each(function(){
+        var t = $(this).text();
+        if(t.length < 400) return;
+
+        $(this).html(
+            t.slice(0,400)+'<span>... </span><br><br><a href="#" class="more"><i class="fa fa-angle-down"></i> Voir plus</a>'+
+            '<span style="display:none;">'+ t.slice(400,t.length)+' <br><br><a href="#" class="less"><i class="fa fa-angle-up"></i> Cacher</a></span>'
+        );
+
+    });
+
+    $('a.more', minimized_elements).click(function(event){
+        event.preventDefault();
+        $(this).hide().prev().hide();
+        $(this).next().show();
+    });
+
+    $('a.less', minimized_elements).click(function(event){
+        event.preventDefault();
+        $(this).parent().hide().prev().show().prev().show();
+    });
+
+});
+
+
 
 function initializeAutocomplete(id) {
   var element = document.getElementById(id);

@@ -11,7 +11,6 @@
         <div class="col-sm-8">
           <h1><%= @user.first_name %> <%= @user.last_name %></h1>
           <p><%= @user.description %></p>
-          <h2><%= @user.address1 %></h2>
 
           <!-- Editer profil -->
           <% if @user.id== current_user.id %>
@@ -25,7 +24,7 @@
   </div>
 </div>
 
-  <div class="container">
+  <div class="container padded">
     <div id="bookshelf" class="row bookshelf">
       <h2 class="text-center">Ses livres</h2>
         <% @offers.each do |offer| %>
@@ -36,10 +35,14 @@
               </div>
             <% end %>
                  <div>
-                  <h2 class="text-center"><%= offer.book.title %></h2>
+                  <h3 class="text-center"><%= offer.book.title %></h3>
+                  <p class="text-center"><%= offer.book.author %></p>
+
                  </div>
+                   <% if @user.id == current_user.id %>
                    <%= link_to(offer_path(offer), {method: :delete, data: { confirm: "Are you sure?"}}) do %>
                      <h4 class="text-center green"><i class="fa fa-trash-o fa-lg green"></i> Supprimer ce livre</h4>
+                  <% end %>
                   <% end %>
           </div>
         <% end %>

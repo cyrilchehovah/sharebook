@@ -19,28 +19,16 @@
           <h2 class="text-center">Retrouvez des livres spécialisés dans le web en fouillant la bibliothèque de vos voisins</h2>
         </div>
       </div>
-
-        <%= link_to books_path do %>
-        La bibliothèque
-        <% end %>
-
-
-
-      <!-- <form>
-        <div class="input-group">
-          <input type="text" class="form-control input-lg" placeholder="HTML5 pour les web designers">
-          <span class="input-group-btn">
-            <button class="btn btn-primary btn-lg" type="button"><i class="fa fa-search"></i></button>
-          </span>
-        </div>
-      </form> -->
+      <div class="text-center">
+       <%= link_to "Parcourez la ...", books_path, :class => "btn btn-primary btn-lg", :method => :get  %>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Categories -->
 
-<div class="container">
+<div class="container padded">
   <div class="row">
     <div class="col-sm-4">
       <div class="banner-top" style='background-image: url("<%= image_url("category-ux.jpg") %>")'>
@@ -93,11 +81,11 @@
 
 <!-- Les livres -->
 
-<div class="container">
+<div class="container padded">
   <div id="bookshelf" class="row bookshelf">
     <h2 class="text-center">Les derniers livres ajoutés</h2>
       <% @books.order("created_at desc").limit(4).each do |book| %>
-        <div class="col-xs-12 col-sm-3 block-book-user">
+        <div class="col-xs-12 col-sm-3">
           <%= link_to book_path(book) do %>
             <div class="image-container">
               <%= image_tag(book.image, class: "book img-responsive") %>
