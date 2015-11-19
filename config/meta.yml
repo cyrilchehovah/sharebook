@@ -1,0 +1,5 @@
+default_title: "Webibli, passionnés du web, partagez vos livres!"
+meta_description: "Il existe un tas de livres passionnants pour apprendre, découvrir, s'inspirer. Ils sont difficiles à trouver en bibliothèque et tous les acheter relève de l'impossible.
+Webibli est une plateforme de partage de livres autour du web, du graphisme et du développement où chacun peut prêter et emprunter des livres gratuitement !"
+meta_image: "meta-image.png" # Une image dans votre dossier app/assets/images/
+twitter_account: "@webibli" #indispensable pour les Twitter Cards
