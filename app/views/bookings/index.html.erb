@@ -14,9 +14,14 @@
 
                 <% @borrow_bookings.each do |borrow| %>
                     <%= link_to booking_path(borrow), class: "see_message_link", remote: :true do %>
-                      <li>
+                      <li class="js-booking-inbox js-booking-inbox-<%= borrow.id %>">
                         <div class="row">
                           <div class="col-xs-3">
+                            <% borrow.messages.each do |message| %>
+                              <% if message.read_at == nil %>
+                                <div class="icon-badge icon-badge-red inbox-notif"></div>
+                              <% end %>
+                            <% end %>
                             <%= image_tag (borrow.offer.user.profil_img ? borrow.offer.user.profil_img : borrow.offer.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
                           </div>
                           <div class="col-xs-9">
@@ -48,9 +53,14 @@
             <ul class="list-unstyled">
               <% @lend_bookings.each do |lending| %>
                   <%= link_to booking_path(lending), class: "see_message_link", remote: :true do %>
-                    <li>
+                    <li class="js-booking-inbox js-booking-inbox-<%= lending.id %>">
                     <div class="row">
                       <div class="col-xs-3">
+                        <% lending.messages.each do |message| %>
+                          <% if message.read_at == nil %>
+                            <div class="icon-badge icon-badge-red inbox-notif"></div>
+                          <% end %>
+                        <% end %>
                         <%= image_tag (lending.user.profil_img ? lending.user.profil_img : lending.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
                       </div>
                       <div class="col-xs-9">
