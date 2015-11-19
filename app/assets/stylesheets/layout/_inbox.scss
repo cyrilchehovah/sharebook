@@ -58,3 +58,12 @@ form#new_message textarea {
   padding-bottom: 20px;
 }
 
+.active {
+  border-left: 2px solid $brand-primary;
+  background: #fff;
+}
+
+.inbox-notif.icon-badge {
+  right: 10px;
+}
+
