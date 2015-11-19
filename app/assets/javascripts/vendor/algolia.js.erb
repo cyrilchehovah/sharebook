@@ -2,7 +2,7 @@ function initialize_algolia_search() {
 
 // Replace with your own values
 var APPLICATION_ID = 'LNZ38F4R3P';
-var SEARCH_ONLY_API_KEY = '<%= ENV["ALGOLIA_API_KEY"] %>';
+var SEARCH_ONLY_API_KEY = '<%= ENV["ALGOLIA_SEARCH_API_KEY"] %>';
 var INDEX_NAME = 'Book' + '<%= ENV["ALGOLIA_SUFFIX"] %>';
 var PARAMS = {
   hitsPerPage: 10,
