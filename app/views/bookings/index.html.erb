@@ -1,94 +1,98 @@
 <div class="container">
   <div class="padded">
-    <% if @borrow_bookings == [] &&  @lend_bookings == [] %>
-      <div class="text-center">
-        <h2 class="text-center">Pas encore de prêts de livres, hop hop ! On s'active !</h2>
-        <%= link_to  'Parcourir la bibliothèque', books_path,  class: "btn btn-primary" %>
-      </div>
-    <% end %>
+
+
+  <div class="inbox-content-container">
     <div class="row">
-      <div class="col-md-3">
-        <% if @borrow_bookings != [] %>
-          <h4 class="green">Mes demandes</h4>
-        <% end %>
-        <ul class="list-unstyled">
-          <% @borrow_bookings.each do |borrow| %>
-            <li>
-              <%= link_to booking_path(borrow), class: "see_message_link", remote: :true do %>
-                <div class="row">
-                  <div class="col-xs-3">
-                    <%= image_tag (borrow.offer.user.profil_img ? borrow.offer.user.profil_img : borrow.offer.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
-                  </div>
-                  <div class="col-xs-9">
-                    <h4><%= borrow.offer.book.title%></h4>
-                    <h4><%= borrow.offer.user.first_name%> -
-                      <span class="green">
-                        <% if borrow.state == "pending" %>
-                          en attente de validation
-                        <% elsif borrow.state == "accepted" %>
-                          prêt en cours
-                        <% elsif borrow.state == "canceled" %>
-                          demande annulée
-                        <% else %>
-                          prêt terminé
-                        <% end %>
-                      </span>
-                    </h4>
-                  </div>
-                </div>
-              <% end %>
-            </li>
-            <hr>
-          <% end %>
-        </ul>
+      <div class="col-md-4">
+        <div class="inbox-index">
+          <% if @borrow_bookings != [] %>
+              <h3 class="booking-title">Mes demandes</h3>
+              <ul class="list-unstyled">
 
-        <% if @lend_bookings != [] %>
-          <h4 class="green">Mes emprunts</h4>
-        <% end %>
-        <ul class="list-unstyled">
-          <% @lend_bookings.each do |lending| %>
-            <li>
-              <%= link_to booking_path(lending), class: "see_message_link", remote: :true do %>
-                <div class="row">
-                  <div class="col-xs-3">
-                    <% lending.messages.each do |message| %>
-                      <% if message.read_at.nil?  %>
-                        <div class="icon-badge icon-badge-blue" id="counter"><%= current_user.unread_messages_count %></div>
-                      <% end %>
+                <% @borrow_bookings.each do |borrow| %>
+                    <%= link_to booking_path(borrow), class: "see_message_link", remote: :true do %>
+                      <li>
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <%= image_tag (borrow.offer.user.profil_img ? borrow.offer.user.profil_img : borrow.offer.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
+                          </div>
+                          <div class="col-xs-9">
+                            <h3><%= borrow.offer.book.title%></h3>
+                            <h4><%= borrow.offer.user.first_name%> -
+                              <span>
+                                <% if borrow.state == "pending" %>
+                                  en attente de validation
+                                <% elsif borrow.state == "accepted" %>
+                                  prêt en cours
+                                <% elsif borrow.state == "canceled" %>
+                                  demande annulée
+                                <% else %>
+                                  prêt terminé
+                                <% end %>
+                              </span>
+                            </h4>
+                          </div>
+                        </div>
+                      </li>
                     <% end %>
-
-                    <%= image_tag (lending.user.profil_img ? lending.user.profil_img : lending.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
-                  </div>
-                  <div class="col-xs-9">
-                    <h4><%= lending.offer.book.title%></h4>
-                    <h4><%= lending.user.first_name%> -
-                      <span class="green">
-                        <% if lending.state == "pending" %>
-                          en attente de validation
-                        <% elsif lending.state == "accepted" %>
-                          prêt en cours
-                        <% elsif lending.state == "canceled" %>
-                          demande annulée
-                        <% else %>
-                          prêt terminé
-                        <% end %>
-                      </span>
-                    </h4>
-                  </div>
-                </div>
+                  <% end %>
               <% end %>
-            </li>
-            <hr>
+            </ul>
+
+          <% if @lend_bookings != [] %>
+            <h3 class="booking-title">Mes emprunts</h3>
+
+            <ul class="list-unstyled">
+              <% @lend_bookings.each do |lending| %>
+                  <%= link_to booking_path(lending), class: "see_message_link", remote: :true do %>
+                    <li>
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <%= image_tag (lending.user.profil_img ? lending.user.profil_img : lending.user.picture.url(:thumb)), class: "img-responsive img-circle" %>
+                      </div>
+                      <div class="col-xs-9">
+                        <h3><%= lending.offer.book.title%></h3>
+                        <h4><%= lending.user.first_name%> -
+                          <span>
+                            <% if lending.state == "pending" %>
+                              en attente de validation
+                            <% elsif lending.state == "accepted" %>
+                              prêt en cours
+                            <% elsif lending.state == "canceled" %>
+                              demande annulée
+                            <% else %>
+                              prêt terminé
+                            <% end %>
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+            <% end %>
+            <% end %>
+          </ul>
+
+        </div><!-- inbox-index -->
+      </div><!-- col-md-3 -->
+
+      <div class="col-md-8">
+        <div id="messages" class="inbox-conversation">
+          <% if @borrow_bookings == [] &&  @lend_bookings == [] %>
+            <div class="text-center">
+              <h2 class="text-center">Pas encore de prêts de livres ? Hop hop ! On s'active !</h2>
+              <%= link_to  'Parcourir la bibliothèque', books_path,  class: "btn btn-primary" %>
+            </div>
           <% end %>
-        </ul>
 
+        </div>
       </div>
+      </div><!-- row -->
 
-      <div class="col-md-9" id="messages">
-      </div>
-    </div>
-  </div>
-</div>
+    </div><!-- inbox-content-container -->
+  </div><!-- padded -->
+</div><!-- container -->
 
 <% content_for :after_js do %>
   <script>

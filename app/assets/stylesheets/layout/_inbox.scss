@@ -11,3 +11,50 @@
 form#new_message textarea {
   min-height: 100px;
 }
+
+
+.inbox-content-container {
+  min-height: 300px;
+  position: relative;
+}
+
+.inbox-index {
+  background: $gray-xlight;
+  height:600px;
+  padding: 1em;
+  li {
+    border-bottom: 1px solid $gray-lighter;
+    padding: 1em;
+  }
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.booking-title {
+  margin-top: 0;
+}
+
+.inbox-conversation {
+  height:600px;
+  h2 {
+    margin-top:0;
+    margin-bottom: 15px;
+  }
+  #message-content {
+    overflow: auto;
+    height: 310px;
+    padding: 1em;
+  }
+  #new_message {
+    position: absolute;
+    bottom:0;
+    width: 100%;
+  }
+}
+
+.inbox-header {
+  border-bottom: 1px solid $gray-lighter;
+  padding-bottom: 20px;
+}
+
