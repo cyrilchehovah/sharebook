@@ -84,7 +84,7 @@
 <div class="container padded">
   <div id="bookshelf" class="row bookshelf">
     <h2 class="text-center">Les derniers livres ajoutés</h2>
-      <% @books.order("created_at desc").limit(4).each do |book| %>
+      <% @books.each do |book| %>
         <div class="col-xs-12 col-sm-3">
           <%= link_to book_path(book) do %>
             <div class="image-container">

@@ -27,7 +27,7 @@
   <div class="container padded">
     <div id="bookshelf" class="row bookshelf">
       <h2 class="text-center">Ses livres</h2>
-        <% @offers.each do |offer| %>
+        <% @offers.order("updated_at DESC").each do |offer| %>
           <div class="col-xs-12 col-sm-3 block-book-user">
             <%= link_to book_path(offer.book) do %>
               <div class="image-container">
