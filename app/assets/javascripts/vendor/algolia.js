@@ -2,8 +2,8 @@ function initialize_algolia_search() {
 
 // Replace with your own values
 var APPLICATION_ID = 'LNZ38F4R3P';
-var SEARCH_ONLY_API_KEY = '<%= ENV["ALGOLIA_API_KEY"] %>';
-var INDEX_NAME = 'Book' + '<%= ENV["ALGOLIA_SUFFIX"] %>';
+var SEARCH_ONLY_API_KEY = $("#js-algolia-metas").data('algolia-search-api-key');
+var INDEX_NAME = 'Book' + $("#js-algolia-metas").data('algolia-suffix');
 var PARAMS = {
   hitsPerPage: 10,
   maxValuesPerFacet: 8,

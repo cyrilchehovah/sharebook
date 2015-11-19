@@ -16,10 +16,7 @@
 
       <div class="col-md-8">
         <h1 class="mt0"><%= @book.title %></h1>
-        <h3> <%= @book.subtitle %> </h3>
         <h3><%= @book.category %> - <%= @book.author %></h3>
-        <% if @book.pages_number %>
-          <h5> <%= @book.pages_number %> pages </h5>
         <% end %>
         <p class="truncate"><%= @book.description %></p>
       </div>
