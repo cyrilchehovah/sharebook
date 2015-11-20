@@ -6,7 +6,7 @@ var APPLICATION_ID = 'LNZ38F4R3P';
 var SEARCH_ONLY_API_KEY = $("#js-algolia-metas").data('algolia-search-api-key');
 var INDEX_NAME = 'Book' + $("#js-algolia-metas").data('algolia-suffix');
 var PARAMS = {
-  hitsPerPage: 10,
+  hitsPerPage: 30,
   maxValuesPerFacet: 8,
   facets: ['type'],
   disjunctiveFacets: ['category', 'brand', 'price']
