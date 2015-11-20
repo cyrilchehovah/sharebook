@@ -96,6 +96,13 @@
         background: transparent !important;
         color: black !important;
       }
+      &.navbar-wagon-button {
+        color: white !important;
+        margin-right: 7px;
+        &:hover {
+          background: black !important;
+        }
+      }
     }
     &:before {
       content: ' ';
