@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
 
-  has_many :offers
-  has_many :bookings
-  has_many :messages
-  has_many :offers_bookings, through: :offers, source: :bookings
-  has_many :books, through: :offers
+  has_many :offers, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :offers_bookings, dependent: :destroy, through: :offers, source: :bookings
+  has_many :books, through: :offers, dependent: :destroy
 
    has_attached_file :picture,
    styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "http://placehold.it/200x200"
